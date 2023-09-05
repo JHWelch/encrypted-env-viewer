@@ -61,7 +61,7 @@ export const observerCallback = () => {
 const initEnvViewer = () => document.querySelectorAll(encryptedFileSelectors)
   .forEach(addDecryptButton);
 
-const decryptEnv = async (fullFile, key) => {
+export const decryptEnv = async (fullFile, key) => {
   if (key.startsWith('base64:')) {
     key = key.substring(7);
   }
