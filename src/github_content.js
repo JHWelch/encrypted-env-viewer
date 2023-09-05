@@ -2,22 +2,21 @@ const CryptoJS = require("crypto-js");
 const Diff = require('diff');
 const Diff2html = require('diff2html');
 
-function initEnvViewer() {
-    let divs = document.querySelectorAll('div[data-file-type=".encrypted"][data-details-container-group="file"]');
+const encryptedFileSelectors = 'div[data-file-type=".encrypted"][data-details-container-group="file"]';
 
-    divs.forEach(addDecryptButton);
-}
+const  initEnvViewer = () => document.querySelectorAll(encryptedFileSelectors)
+    .forEach(addDecryptButton);
 
-function addDecryptButton(a) {
+const addDecryptButton = (fileDiv) => {
     let button = document.createElement('button');
     button.innerText = 'Decrypt';
-    button.setAttribute('data-find-me', 'something')
 
     button.addEventListener('click', () => {
-        const left = a.querySelector('[data-split-side="left"]');
-        const right = a.querySelector('[data-split-side="right"]');
+        const left = fileDiv.querySelector('[data-split-side="left"]');
+        const right = fileDiv.querySelector('[data-split-side="right"]');
 
         if (!left || !right) {
+            alert('Could not find file contents');
             return;
         }
 
@@ -32,14 +31,14 @@ function addDecryptButton(a) {
         ]).then(([leftDecrypted, rightDecrypted]) => {
             const diff = Diff.createPatch('patch', leftDecrypted, rightDecrypted);
             const html = Diff2html.html(diff, { drawFileList: false, matching: 'lines' });
-            a.innerHTML = html;
+            fileDiv.innerHTML = html;
         })
     });
 
-    a.children[0].appendChild(button);
+    fileDiv.children[0].appendChild(button);
 }
 
-function addLocationObserver(callback) {
+const addLocationObserver = (callback) => {
     const config = { attributes: false, childList: true, subtree: false }
 
     const observer = new MutationObserver(callback)
@@ -47,14 +46,14 @@ function addLocationObserver(callback) {
     observer.observe(document.body, config)
 }
 
-function observerCallback() {
+const observerCallback = () => {
     if (window.location.href.startsWith('https://github.com')) {
         // Has to wait for page load
         sleep(1000).then(initEnvViewer);
     }
 }
 
-async function decryptEnv(fullFile, key) {
+const decryptEnv = async (fullFile, key) => {
     if (key.startsWith('base64:')) {
         key = key.substring(7);
     }
@@ -69,13 +68,9 @@ async function decryptEnv(fullFile, key) {
     return trimEnv(decryptedWA.toString(CryptoJS.enc.Utf8));
 }
 
-function trimEnv(env) {
-    return env.match(/s:\d+:"([\s\S]*)";/)[1];
-}
+const trimEnv = (env) => env.match(/s:\d+:"([\s\S]*)";/)[1];
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 addLocationObserver(observerCallback)
 observerCallback()
