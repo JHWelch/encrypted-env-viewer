@@ -78,4 +78,4 @@ export const decryptEnv = async (fullFile, key) => {
 
 export const trimEnv = (env) => env.match(/s:\d+:"([\s\S]*)";/)[1];
 
-const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+export const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));

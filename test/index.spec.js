@@ -1,5 +1,4 @@
 import * as helpers from '../src/helpers';
-var sinon = require("sinon");
 
 describe('registering location observer', () => {
   let addLocationObserver, observerCallback;
