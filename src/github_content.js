@@ -34,7 +34,7 @@ function processEncryptedFileDivs(a, b) {
         const leftData = left.children[0].getAttribute('data-original-line').substring(1)
         const rightData = right.children[0].getAttribute('data-original-line').substring(1)
 
-        const key = prompt('Enter key')
+        const key = prompt('Enter encryption key')
 
         Promise.all([
             decryptEnv(leftData, key),
@@ -62,15 +62,19 @@ function observerCallback() {
 }
 
 async function decryptEnv(fullFile, key) {
-  const fileObject = await JSON.parse(atob(fullFile));
-  console.log(fileObject)
+    if (key.startsWith('base64:')) {
+        key = key.substring(7);
+    }
 
-  const parsedKey = CryptoJS.enc.Base64.parse(key);
-  const iv  = CryptoJS.enc.Base64.parse(fileObject.iv);
+    const fileObject = await JSON.parse(atob(fullFile));
+    console.log(fileObject)
 
-  const decryptedWA = CryptoJS.AES.decrypt(fileObject.value, parsedKey, { iv: iv});
+    const parsedKey = CryptoJS.enc.Base64.parse(key);
+    const iv  = CryptoJS.enc.Base64.parse(fileObject.iv);
 
-  return decryptedWA.toString(CryptoJS.enc.Utf8);
+    const decryptedWA = CryptoJS.AES.decrypt(fileObject.value, parsedKey, { iv: iv});
+
+    return decryptedWA.toString(CryptoJS.enc.Utf8);
 }
 
 addLocationObserver(observerCallback)
