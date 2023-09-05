@@ -3,30 +3,23 @@ const Diff = require('diff');
 const Diff2html = require('diff2html');
 
 function initEnvViewer() {
-    let divs = document.querySelectorAll('div[data-file-type=".encrypted"]');
+    let divs = document.querySelectorAll('div[data-file-type=".encrypted"][data-details-container-group="file"]');
 
-    if (divs.length <= 0) {
-        return;
-    }
-
-    if (divs.length % 2 !== 0) {
-        console.error('Found an odd number of encrypted files. Something is wrong.');
-        return;
-    }
-
-    for (let i = 0; i < divs.length; i += 2) {
-        processEncryptedFileDivs(divs[i], divs[i + 1]);
-    }
+    divs.forEach(addDecryptButton);
 }
 
-function processEncryptedFileDivs(a, b) {
+function addDecryptButton(a) {
     let button = document.createElement('button');
     button.innerText = 'Decrypt';
-    a.children[0].appendChild(button);
+    button.setAttribute('data-find-me', 'something')
 
     button.addEventListener('click', () => {
         const left = a.querySelector('[data-split-side="left"]');
         const right = a.querySelector('[data-split-side="right"]');
+
+        if (!left || !right) {
+            return;
+        }
 
         const leftData = left.children[0].getAttribute('data-original-line').substring(1)
         const rightData = right.children[0].getAttribute('data-original-line').substring(1)
@@ -42,6 +35,8 @@ function processEncryptedFileDivs(a, b) {
             a.innerHTML = html;
         })
     });
+
+    a.children[0].appendChild(button);
 }
 
 function addLocationObserver(callback) {
@@ -54,7 +49,8 @@ function addLocationObserver(callback) {
 
 function observerCallback() {
     if (window.location.href.startsWith('https://github.com')) {
-        initEnvViewer()
+        // Has to wait for page load
+        sleep(1000).then(initEnvViewer);
     }
 }
 
@@ -75,6 +71,10 @@ async function decryptEnv(fullFile, key) {
 
 function trimEnv(env) {
     return env.match(/s:\d+:"([\s\S]*)";/)[1];
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 addLocationObserver(observerCallback)
