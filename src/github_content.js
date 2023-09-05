@@ -34,8 +34,8 @@ function processEncryptedFileDivs(a, b) {
 
         const key = prompt('Enter key')
 
-        decryptEnv(leftData, key).then((decrypted) => console.log(decrypted))
-        decryptEnv(rightData, key).then((decrypted) => console.log(decrypted))
+        decryptEnv(leftData, key).then(console.log)
+        decryptEnv(rightData, key).then(console.log)
     });
 }
 
