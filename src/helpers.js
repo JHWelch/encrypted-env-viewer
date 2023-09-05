@@ -13,6 +13,7 @@ const diff2HtmlConfig = {
 const addDecryptButton = (fileDiv) => {
   let button = document.createElement('button');
   button.innerText = 'Decrypt';
+  button.classList.add('btn', 'btn-sm', 'btn-secondary', 'ml-2');
 
   button.addEventListener('click', () => {
     const left = getFileContent(fileDiv, 'left');
