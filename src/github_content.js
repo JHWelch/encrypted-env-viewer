@@ -23,7 +23,8 @@ const addDecryptButton = (fileDiv) => {
             decryptEnv(left, key),
             decryptEnv(right, key),
         ]).then(([leftDecrypted, rightDecrypted]) => {
-            const diff = Diff.createPatch('patch', leftDecrypted, rightDecrypted);
+            const title = fileDiv.getAttribute('data-tagsearch-path');
+            const diff = Diff.createPatch(title, leftDecrypted, rightDecrypted);
             const html = Diff2html.html(diff, { drawFileList: false, matching: 'lines', outputFormat: 'side-by-side' });
             fileDiv.innerHTML = html;
         })
