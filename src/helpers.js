@@ -29,14 +29,11 @@ const addDecryptButton = (fileDiv) => {
       decryptEnv(left, key),
       decryptEnv(right, key),
     ]).then(([leftDecrypted, rightDecrypted]) => {
-      const html = Diff2html.html(diff(leftDecrypted, rightDecrypted), diff2HtmlConfig);
-      const doc = new DOMParser().parseFromString(html, 'text/html');
-      const header = doc.querySelector('.d2h-file-header');
-      header.parentNode.removeChild(header);
+      const html = diffHtml(diff(leftDecrypted, rightDecrypted));
 
       const inside = fileDiv.querySelector('[data-hydro-view]');
       inside.innerHTML = '';
-      inside.appendChild(doc.body);
+      inside.appendChild(html);
     })
   });
 
@@ -44,6 +41,15 @@ const addDecryptButton = (fileDiv) => {
 }
 
 const diff = (left, right) => Diff.createPatch('patch', left, right);
+
+const diffHtml = (diff) => {
+  const html = Diff2html.html(diff, diff2HtmlConfig);
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  const header = doc.querySelector('.d2h-file-header');
+  header.parentNode.removeChild(header);
+
+  return doc.body;
+}
 
 const getFileContent = (fileDiv, side) => {
   const div = fileDiv.querySelector(`[data-split-side="${side}"]`);
