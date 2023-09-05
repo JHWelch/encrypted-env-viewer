@@ -1,4 +1,5 @@
 const CryptoJS = require("crypto-js");
+const Diff = require('diff');
 
 function initEnvViewer() {
     console.log('initted')
@@ -34,8 +35,13 @@ function processEncryptedFileDivs(a, b) {
 
         const key = prompt('Enter key')
 
-        decryptEnv(leftData, key).then(console.log)
-        decryptEnv(rightData, key).then(console.log)
+        Promise.all([
+            decryptEnv(leftData, key),
+            decryptEnv(rightData, key),
+        ]).then(([leftDecrypted, rightDecrypted]) => {
+            const diff = Diff.createPatch('patch', leftDecrypted, rightDecrypted);
+            console.log(diff);
+        })
     });
 }
 
