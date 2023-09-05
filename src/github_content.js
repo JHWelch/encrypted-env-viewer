@@ -3,7 +3,6 @@ const Diff = require('diff');
 const Diff2html = require('diff2html');
 
 function initEnvViewer() {
-    console.log('initted')
     let divs = document.querySelectorAll('div[data-file-type=".encrypted"]');
 
     if (divs.length <= 0) {
@@ -21,8 +20,6 @@ function initEnvViewer() {
 }
 
 function processEncryptedFileDivs(a, b) {
-    console.log('processing', a, b)
-
     let button = document.createElement('button');
     button.innerText = 'Decrypt';
     a.children[0].appendChild(button);
@@ -67,14 +64,17 @@ async function decryptEnv(fullFile, key) {
     }
 
     const fileObject = await JSON.parse(atob(fullFile));
-    console.log(fileObject)
 
     const parsedKey = CryptoJS.enc.Base64.parse(key);
     const iv  = CryptoJS.enc.Base64.parse(fileObject.iv);
 
     const decryptedWA = CryptoJS.AES.decrypt(fileObject.value, parsedKey, { iv: iv});
 
-    return decryptedWA.toString(CryptoJS.enc.Utf8);
+    return trimEnv(decryptedWA.toString(CryptoJS.enc.Utf8));
+}
+
+function trimEnv(env) {
+    return env.match(/s:\d+:"([\s\S]*)";/)[1];
 }
 
 addLocationObserver(observerCallback)
