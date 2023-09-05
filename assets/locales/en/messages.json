@@ -1,0 +1,11 @@
+{
+    "appName": {
+        "message": "encrypted-envs"
+    },
+    "appShortName": {
+        "message": "encrypted-envs"
+    },
+    "appDescription": {
+        "message": "View encrypted .env files directly in GitHub pull requests."
+    }
+}
