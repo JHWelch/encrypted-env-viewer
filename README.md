@@ -1,4 +1,4 @@
-# encrypted-envs
+# Encrypted Env Viewer
 
 View encrypted .env files directly in GitHub pull requests.
 
