@@ -4,9 +4,16 @@ const Diff2html = require('diff2html');
 
 const encryptedFileSelectors = 'div[data-file-type=".encrypted"][data-details-container-group="file"]';
 
+const diff2HtmlConfig = {
+  drawFileList: false,
+  matching: 'lines',
+  outputFormat: 'side-by-side',
+};
+
 const addDecryptButton = (fileDiv) => {
   let button = document.createElement('button');
   button.innerText = 'Decrypt';
+  button.classList.add('btn', 'btn-sm', 'btn-secondary', 'ml-2');
 
   button.addEventListener('click', () => {
     const left = getFileContent(fileDiv, 'left');
@@ -23,14 +30,26 @@ const addDecryptButton = (fileDiv) => {
       decryptEnv(left, key),
       decryptEnv(right, key),
     ]).then(([leftDecrypted, rightDecrypted]) => {
-      const title = fileDiv.getAttribute('data-tagsearch-path');
-      const diff = Diff.createPatch(title, leftDecrypted, rightDecrypted);
-      const html = Diff2html.html(diff, { drawFileList: false, matching: 'lines', outputFormat: 'side-by-side' });
-      fileDiv.innerHTML = html;
+      const html = diffHtml(diff(leftDecrypted, rightDecrypted));
+
+      const inside = fileDiv.querySelector('[data-hydro-view]');
+      inside.innerHTML = '';
+      inside.appendChild(html);
     })
   });
 
   fileDiv.children[0].appendChild(button);
+}
+
+const diff = (left, right) => Diff.createPatch('patch', left, right);
+
+const diffHtml = (diff) => {
+  const html = Diff2html.html(diff, diff2HtmlConfig);
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  const header = doc.querySelector('.d2h-file-header');
+  header.parentNode.removeChild(header);
+
+  return doc.body;
 }
 
 const getFileContent = (fileDiv, side) => {
