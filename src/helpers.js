@@ -29,11 +29,8 @@ const addDecryptButton = (fileDiv) => {
       decryptEnv(left, key),
       decryptEnv(right, key),
     ]).then(([leftDecrypted, rightDecrypted]) => {
-      const title = fileDiv.getAttribute('data-tagsearch-path');
-      const diff = Diff.createPatch(title, leftDecrypted, rightDecrypted);
-      const html = Diff2html.html(diff, diff2HtmlConfig);
-      let parser = new DOMParser();
-      let doc = parser.parseFromString(html, 'text/html');
+      const html = Diff2html.html(diff(leftDecrypted, rightDecrypted), diff2HtmlConfig);
+      const doc = new DOMParser().parseFromString(html, 'text/html');
       const header = doc.querySelector('.d2h-file-header');
       header.parentNode.removeChild(header);
 
@@ -45,6 +42,8 @@ const addDecryptButton = (fileDiv) => {
 
   fileDiv.children[0].appendChild(button);
 }
+
+const diff = (left, right) => Diff.createPatch('patch', left, right);
 
 const getFileContent = (fileDiv, side) => {
   const div = fileDiv.querySelector(`[data-split-side="${side}"]`);
