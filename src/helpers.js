@@ -43,7 +43,7 @@ const getFileContent = (fileDiv, side) => {
     return div.children[0].getAttribute('data-original-line').substring(1);
 }
 
-const addLocationObserver = (callback) => {
+export const addLocationObserver = (callback) => {
     const config = { attributes: false, childList: true, subtree: false }
 
     const observer = new MutationObserver(callback)
@@ -51,7 +51,7 @@ const addLocationObserver = (callback) => {
     observer.observe(document.body, config)
 }
 
-const observerCallback = () => {
+export const observerCallback = () => {
     if (window.location.href.startsWith('https://github.com')) {
         // Has to wait for page load
         sleep(1000).then(initEnvViewer);
@@ -79,6 +79,3 @@ const decryptEnv = async (fullFile, key) => {
 const trimEnv = (env) => env.match(/s:\d+:"([\s\S]*)";/)[1];
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-addLocationObserver(observerCallback)
-observerCallback()

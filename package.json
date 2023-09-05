@@ -42,7 +42,7 @@
         "js_bundles": [
             {
                 "name": "github_content",
-                "src": "src/github_content.js"
+                "src": "src/*.js"
             }
         ],
         "scss_bundles": [
