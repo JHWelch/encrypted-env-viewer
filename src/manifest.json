@@ -15,6 +15,7 @@
     "content_scripts": [
         {
             "js": ["github_content.js"],
+            "css": ["diff2html.css"],
             "matches": [
                 "https://github.com/*"
             ]

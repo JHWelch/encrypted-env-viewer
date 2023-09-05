@@ -44,6 +44,12 @@
                 "name": "github_content",
                 "src": "src/github_content.js"
             }
+        ],
+        "scss_bundles": [
+            {
+                "name": "diff2html",
+                "src": "node_modules/diff2html/bundles/css/diff2html.min.css"
+            }
         ]
     },
     "dependencies": {
