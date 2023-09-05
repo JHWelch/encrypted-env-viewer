@@ -22,6 +22,14 @@ function processEncryptedFileDivs(a, b) {
     let button = document.createElement('button');
     button.innerText = 'Decrypt';
     a.children[0].appendChild(button);
+
+    button.addEventListener('click', () => {
+        const left = a.querySelector('[data-split-side="left"]');
+        const right = a.querySelector('[data-split-side="right"]');
+
+        console.log('left', left.children[0].getAttribute('data-original-line'))
+        console.log('right', right.children[0].getAttribute('data-original-line'))
+    });
 }
 
 function addLocationObserver(callback) {
