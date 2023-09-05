@@ -4,38 +4,42 @@ const Diff2html = require('diff2html');
 
 const encryptedFileSelectors = 'div[data-file-type=".encrypted"][data-details-container-group="file"]';
 
-const  initEnvViewer = () => document.querySelectorAll(encryptedFileSelectors)
-    .forEach(addDecryptButton);
-
 const addDecryptButton = (fileDiv) => {
     let button = document.createElement('button');
     button.innerText = 'Decrypt';
 
     button.addEventListener('click', () => {
-        const left = fileDiv.querySelector('[data-split-side="left"]');
-        const right = fileDiv.querySelector('[data-split-side="right"]');
+        const left = getFileContent(fileDiv, 'left');
+        const right = getFileContent(fileDiv, 'right');
 
         if (!left || !right) {
             alert('Could not find file contents');
             return;
         }
 
-        const leftData = left.children[0].getAttribute('data-original-line').substring(1)
-        const rightData = right.children[0].getAttribute('data-original-line').substring(1)
-
         const key = prompt('Enter encryption key')
 
         Promise.all([
-            decryptEnv(leftData, key),
-            decryptEnv(rightData, key),
+            decryptEnv(left, key),
+            decryptEnv(right, key),
         ]).then(([leftDecrypted, rightDecrypted]) => {
             const diff = Diff.createPatch('patch', leftDecrypted, rightDecrypted);
-            const html = Diff2html.html(diff, { drawFileList: false, matching: 'lines' });
+            const html = Diff2html.html(diff, { drawFileList: false, matching: 'lines', outputFormat: 'side-by-side' });
             fileDiv.innerHTML = html;
         })
     });
 
     fileDiv.children[0].appendChild(button);
+}
+
+const getFileContent = (fileDiv, side) => {
+    const div = fileDiv.querySelector(`[data-split-side="${side}"]`);
+
+    if (!div) {
+        return;
+    }
+
+    return div.children[0].getAttribute('data-original-line').substring(1);
 }
 
 const addLocationObserver = (callback) => {
@@ -52,6 +56,9 @@ const observerCallback = () => {
         sleep(1000).then(initEnvViewer);
     }
 }
+
+const initEnvViewer = () => document.querySelectorAll(encryptedFileSelectors)
+    .forEach(addDecryptButton);
 
 const decryptEnv = async (fullFile, key) => {
     if (key.startsWith('base64:')) {
