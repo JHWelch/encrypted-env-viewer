@@ -12,9 +12,14 @@
     "icons": {
         "128": "assets/img/128x128.png"
     },
-    "background": {
-        "service_worker": "background.js"
-    },
+    "content_scripts": [
+        {
+            "js": ["github_content.js"],
+            "matches": [
+                "https://github.com/*"
+            ]
+        }
+    ],
     "action": {
         "default_icon": {
             "16": "assets/img/16x16.png",
