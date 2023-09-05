@@ -1,3 +1,5 @@
+const CryptoJS = require("crypto-js");
+
 function initEnvViewer() {
     console.log('initted')
     let divs = document.querySelectorAll('div[data-file-type=".encrypted"]');
@@ -27,8 +29,13 @@ function processEncryptedFileDivs(a, b) {
         const left = a.querySelector('[data-split-side="left"]');
         const right = a.querySelector('[data-split-side="right"]');
 
-        console.log('left', left.children[0].getAttribute('data-original-line'))
-        console.log('right', right.children[0].getAttribute('data-original-line'))
+        const leftData = left.children[0].getAttribute('data-original-line').substring(1)
+        const rightData = right.children[0].getAttribute('data-original-line').substring(1)
+
+        const key = prompt('Enter key')
+
+        decryptEnv(leftData, key).then((decrypted) => console.log(decrypted))
+        decryptEnv(rightData, key).then((decrypted) => console.log(decrypted))
     });
 }
 
@@ -47,6 +54,18 @@ function observerCallback() {
     if (window.location.href.startsWith('https://github.com')) {
         initEnvViewer()
     }
+}
+
+async function decryptEnv(fullFile, key) {
+  const fileObject = await JSON.parse(atob(fullFile));
+  console.log(fileObject)
+
+  const parsedKey = CryptoJS.enc.Base64.parse(key);
+  const iv  = CryptoJS.enc.Base64.parse(fileObject.iv);
+
+  const decryptedWA = CryptoJS.AES.decrypt(fileObject.value, parsedKey, { iv: iv});
+
+  return decryptedWA.toString(CryptoJS.enc.Utf8);
 }
 
 addLocationObserver(observerCallback)

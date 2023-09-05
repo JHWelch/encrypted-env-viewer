@@ -45,5 +45,8 @@
                 "src": "src/github_content.js"
             }
         ]
+    },
+    "dependencies": {
+        "crypto-js": "^4.1.1"
     }
 }
