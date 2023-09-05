@@ -1,5 +1,6 @@
 const CryptoJS = require("crypto-js");
 const Diff = require('diff');
+const Diff2html = require('diff2html');
 
 function initEnvViewer() {
     console.log('initted')
@@ -40,7 +41,8 @@ function processEncryptedFileDivs(a, b) {
             decryptEnv(rightData, key),
         ]).then(([leftDecrypted, rightDecrypted]) => {
             const diff = Diff.createPatch('patch', leftDecrypted, rightDecrypted);
-            console.log(diff);
+            const html = Diff2html.html(diff, { drawFileList: false, matching: 'lines' });
+            a.innerHTML = html;
         })
     });
 }
