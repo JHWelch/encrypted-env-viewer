@@ -1,0 +1,2 @@
+addLocationObserver(observerCallback)
+observerCallback()
