@@ -2,9 +2,26 @@ function initEnvViewer() {
     console.log('initted')
     let divs = document.querySelectorAll('div[data-file-type=".encrypted"]');
 
-    if (divs.length > 0) {
-        console.log(`Found ${divs.length} encrypted files`)
+    if (divs.length <= 0) {
+        return;
     }
+
+    if (divs.length % 2 !== 0) {
+        console.error('Found an odd number of encrypted files. Something is wrong.');
+        return;
+    }
+
+    for (let i = 0; i < divs.length; i += 2) {
+        processEncryptedFileDivs(divs[i], divs[i + 1]);
+    }
+}
+
+function processEncryptedFileDivs(a, b) {
+    console.log('processing', a, b)
+
+    let button = document.createElement('button');
+    button.innerText = 'Decrypt';
+    a.children[0].appendChild(button);
 }
 
 function addLocationObserver(callback) {
