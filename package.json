@@ -1,12 +1,12 @@
 {
-    "name": "encrypted-envs",
+    "name": "encrypted-env-viewer",
     "description": "View encrypted .env files directly in GitHub pull requests.",
     "version": "0.0.1",
     "homepage": "http://chrome.google.com/webstore",
-    "author": "ENTER YOUR NAME HERE",
+    "author": "Jordan Welch",
     "repository": {
         "type": "git",
-        "url": "ENTER GIT REPO URL"
+        "url": "https://github.com/JHWelch/encrypted-env-viewer"
     },
     "scripts": {
         "start": "xt-build -e dev -w",
