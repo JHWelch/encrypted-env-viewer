@@ -12,4 +12,6 @@ export default {
   },
 
   encryptedFiles: () => document.querySelectorAll(encryptedFileSelectors),
+
+  diffView: (fileDiv) => fileDiv.querySelector('[data-hydro-view]'),
 }

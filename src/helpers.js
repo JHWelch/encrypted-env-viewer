@@ -32,7 +32,7 @@ const addDecryptButton = (fileDiv) => {
       decryptEnv(right, key),
     ]).then(([leftDecrypted, rightDecrypted]) => {
       const html = diffHtml(diff(leftDecrypted, rightDecrypted));
-      const inside = fileDiv.querySelector('[data-hydro-view]');
+      const inside = dom.diffView(fileDiv);
       inside.innerHTML = '';
       inside.appendChild(html);
     })
