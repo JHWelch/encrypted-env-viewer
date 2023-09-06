@@ -1,8 +1,8 @@
 const encryptedFileSelectors = 'div[data-file-type=".encrypted"][data-details-container-group="file"]';
 
-export default {
-  diffView: (fileDiv) => fileDiv.querySelector('[data-hydro-view]'),
+const diffView = (fileDiv) => fileDiv.querySelector('[data-hydro-view]');
 
+export default {
   encryptedFiles: () => document.querySelectorAll(encryptedFileSelectors),
 
   fileContents: (fileDiv, side) => {
@@ -24,4 +24,10 @@ export default {
 
     fileDiv.children[0].appendChild(button);
   },
+
+  addNewDiff: (fileDiv, diff) => {
+    const inside = diffView(fileDiv);
+    inside.innerHTML = '';
+    inside.appendChild(diff);
+  }
 }

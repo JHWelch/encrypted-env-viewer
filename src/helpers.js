@@ -1,14 +1,6 @@
 import { decryptEnv } from "./decrypt";
+import { diffHtml } from "./diff";
 import dom from "./dom";
-
-const Diff = require('diff');
-const Diff2html = require('diff2html');
-
-const diff2HtmlConfig = {
-  drawFileList: false,
-  matching: 'lines',
-  outputFormat: 'side-by-side',
-};
 
 const handleEncryptedFile = (fileDiv) => {
   const left = dom.fileContents(fileDiv, 'left');
@@ -26,23 +18,9 @@ const handleEncryptedFile = (fileDiv) => {
       decryptEnv(left, key),
       decryptEnv(right, key),
     ]).then(([leftDecrypted, rightDecrypted]) => {
-      const html = diffHtml(diff(leftDecrypted, rightDecrypted));
-      const inside = dom.diffView(fileDiv);
-      inside.innerHTML = '';
-      inside.appendChild(html);
+      dom.addNewDiff(fileDiv, diffHtml(leftDecrypted, rightDecrypted));
     })
   });
-}
-
-const diff = (left, right) => Diff.createPatch('patch', left, right);
-
-const diffHtml = (diff) => {
-  const html = Diff2html.html(diff, diff2HtmlConfig);
-  const doc = new DOMParser().parseFromString(html, 'text/html');
-  const header = doc.querySelector('.d2h-file-header');
-  header.parentNode.removeChild(header);
-
-  return doc.body;
 }
 
 export const addLocationObserver = (callback) => {
