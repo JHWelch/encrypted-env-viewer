@@ -1,8 +1,8 @@
+import dom from "./dom";
+
 const CryptoJS = require("crypto-js");
 const Diff = require('diff');
 const Diff2html = require('diff2html');
-
-const encryptedFileSelectors = 'div[data-file-type=".encrypted"][data-details-container-group="file"]';
 
 const diff2HtmlConfig = {
   drawFileList: false,
@@ -16,8 +16,8 @@ const addDecryptButton = (fileDiv) => {
   button.classList.add('btn', 'btn-sm', 'btn-secondary', 'ml-2');
   button.setAttribute('data-test', 'decrypt-env');
 
-  const left = getFileContent(fileDiv, 'left');
-  const right = getFileContent(fileDiv, 'right');
+  const left = dom.fileContents(fileDiv, 'left');
+  const right = dom.fileContents(fileDiv, 'right');
 
   if (!left || !right) {
     alert('Could not find file contents');
@@ -52,16 +52,6 @@ const diffHtml = (diff) => {
   return doc.body;
 }
 
-const getFileContent = (fileDiv, side) => {
-  const div = fileDiv.querySelector(`[data-split-side="${side}"]`);
-
-  if (!div) {
-    return;
-  }
-
-  return div.children[0].getAttribute('data-original-line').substring(1);
-}
-
 export const addLocationObserver = (callback) => {
   const config = { attributes: false, childList: true, subtree: false }
 
@@ -77,8 +67,7 @@ export const observerCallback = () => {
   }
 }
 
-export const initEnvViewer = () => document
-  .querySelectorAll(encryptedFileSelectors)
+export const initEnvViewer = () => dom.encryptedFiles()
   .forEach(addDecryptButton);
 
 export const decryptEnv = async (fullFile, key) => {
