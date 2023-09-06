@@ -20,11 +20,25 @@
     "sinon": true,
     "chrome": true
   },
-  "plugins": [],
+  "plugins": [
+    "import"
+  ],
   "parserOptions": {
     "ecmaVersion": 2020,
     "sourceType": "module"
   },
   "rules": {
+    "comma-dangle": ["error", "always-multiline"],
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "import/no-commonjs": "error",
+    "indent": ["error", 2],
+    "max-len": ["error", {
+      "ignoreTrailingComments": true,
+      "ignoreUrls": true,
+      "tabWidth": 2
+    }],
+    "object-curly-spacing": ["error", "always"],
+    "quotes": ["error", "single"],
+    "space-before-function-paren": ["error", "always"]
   }
 }

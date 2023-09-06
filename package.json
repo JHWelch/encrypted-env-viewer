@@ -18,7 +18,7 @@
         "test": "xt-test",
         "coverage": "nyc --reporter=lcov npm run test",
         "sync": "xt-sync",
-        "lint": "eslint"
+        "lint": "eslint src"
     },
     "babel": {
         "presets": [
@@ -29,6 +29,7 @@
         "test/**/*"
     ],
     "devDependencies": {
+        "eslint-plugin-import": "^2.28.1",
         "extension-cli": "latest",
         "sinon": "^15.2.0"
     },

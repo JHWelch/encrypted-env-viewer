@@ -1,5 +1,5 @@
-const Diff = require('diff');
-const Diff2html = require('diff2html');
+import Diff from 'diff';
+import Diff2html from 'diff2html';
 
 const diff2HtmlConfig = {
   drawFileList: false,

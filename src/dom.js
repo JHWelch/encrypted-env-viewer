@@ -1,4 +1,5 @@
-const encryptedFileSelectors = 'div[data-file-type=".encrypted"][data-details-container-group="file"]';
+const encryptedFileSelectors =
+  'div[data-file-type=".encrypted"][data-details-container-group="file"]';
 
 const diffView = (fileDiv) => fileDiv.querySelector('[data-hydro-view]');
 
@@ -29,5 +30,5 @@ export default {
     const inside = diffView(fileDiv);
     inside.innerHTML = '';
     inside.appendChild(diff);
-  }
+  },
 }
