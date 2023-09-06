@@ -1,5 +1,5 @@
-import Diff from 'diff';
-import Diff2html from 'diff2html';
+import * as Diff from 'diff';
+import * as Diff2html from 'diff2html';
 
 const diff2HtmlConfig = {
   drawFileList: false,
