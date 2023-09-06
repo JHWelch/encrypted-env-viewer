@@ -18,7 +18,7 @@
         "test": "xt-test",
         "coverage": "nyc --reporter=lcov npm run test",
         "sync": "xt-sync",
-        "lint": "eslint"
+        "lint": "eslint src"
     },
     "babel": {
         "presets": [

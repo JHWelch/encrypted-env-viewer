@@ -1,6 +1,6 @@
-import { decryptEnv } from "./decrypt";
-import { diffHtml } from "./diff";
-import dom from "./dom";
+import { decryptEnv } from './decrypt';
+import { diffHtml } from './diff';
+import dom from './dom';
 
 const handleEncryptedFile = (fileDiv) => {
   const left = dom.fileContents(fileDiv, 'left');
