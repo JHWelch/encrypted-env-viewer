@@ -1,4 +1,4 @@
-const CryptoJS = require('crypto-js');
+import CryptoJS from 'crypto-js';
 
 export const decryptEnv = async (fullFile, key) => {
   if (key.startsWith('base64:')) {

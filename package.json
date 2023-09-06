@@ -29,6 +29,7 @@
         "test/**/*"
     ],
     "devDependencies": {
+        "eslint-plugin-import": "^2.28.1",
         "extension-cli": "latest",
         "sinon": "^15.2.0"
     },
