@@ -10,12 +10,7 @@ const diff2HtmlConfig = {
   outputFormat: 'side-by-side',
 };
 
-const addDecryptButton = (fileDiv) => {
-  let button = document.createElement('button');
-  button.innerHTML = 'Decrypt';
-  button.classList.add('btn', 'btn-sm', 'btn-secondary', 'ml-2');
-  button.setAttribute('data-test', 'decrypt-env');
-
+const handleEncryptedFile = (fileDiv) => {
   const left = dom.fileContents(fileDiv, 'left');
   const right = dom.fileContents(fileDiv, 'right');
 
@@ -24,7 +19,7 @@ const addDecryptButton = (fileDiv) => {
     return;
   }
 
-  button.addEventListener('click', () => {
+  dom.addDecryptButton(fileDiv, () => {
     const key = prompt('Enter encryption key')
 
     Promise.all([
@@ -37,8 +32,6 @@ const addDecryptButton = (fileDiv) => {
       inside.appendChild(html);
     })
   });
-
-  fileDiv.children[0].appendChild(button);
 }
 
 const diff = (left, right) => Diff.createPatch('patch', left, right);
@@ -68,7 +61,7 @@ export const observerCallback = () => {
 }
 
 export const initEnvViewer = () => dom.encryptedFiles()
-  .forEach(addDecryptButton);
+  .forEach(handleEncryptedFile);
 
 export const decryptEnv = async (fullFile, key) => {
   if (key.startsWith('base64:')) {
