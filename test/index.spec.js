@@ -1,11 +1,11 @@
-import * as helpers from '../src/helpers';
+import * as core from '../src/core';
 
 describe('registering location observer', () => {
   let addLocationObserver, observerCallback;
 
   before(() => {
-    addLocationObserver = sinon.replace(helpers, 'addLocationObserver', sinon.fake());
-    observerCallback =  sinon.replace(helpers, 'observerCallback', sinon.fake());
+    addLocationObserver = sinon.replace(core, 'addLocationObserver', sinon.fake());
+    observerCallback =  sinon.replace(core, 'observerCallback', sinon.fake());
   });
 
   afterEach(() => {

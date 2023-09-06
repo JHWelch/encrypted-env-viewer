@@ -1,4 +1,4 @@
-import { initEnvViewer, sleep } from "../src/helpers";
+import { initEnvViewer, sleep } from "../src/core";
 import fs from 'fs';
 
 describe('sleep', () => {
