@@ -12,8 +12,9 @@ const diff2HtmlConfig = {
 
 const addDecryptButton = (fileDiv) => {
   let button = document.createElement('button');
-  button.innerText = 'Decrypt';
+  button.innerHTML = 'Decrypt';
   button.classList.add('btn', 'btn-sm', 'btn-secondary', 'ml-2');
+  button.setAttribute('data-test', 'decrypt-env');
 
   button.addEventListener('click', () => {
     const left = getFileContent(fileDiv, 'left');
@@ -31,7 +32,6 @@ const addDecryptButton = (fileDiv) => {
       decryptEnv(right, key),
     ]).then(([leftDecrypted, rightDecrypted]) => {
       const html = diffHtml(diff(leftDecrypted, rightDecrypted));
-
       const inside = fileDiv.querySelector('[data-hydro-view]');
       inside.innerHTML = '';
       inside.appendChild(html);
@@ -77,7 +77,8 @@ export const observerCallback = () => {
   }
 }
 
-const initEnvViewer = () => document.querySelectorAll(encryptedFileSelectors)
+export const initEnvViewer = () => document
+  .querySelectorAll(encryptedFileSelectors)
   .forEach(addDecryptButton);
 
 export const decryptEnv = async (fullFile, key) => {
