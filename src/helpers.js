@@ -16,15 +16,15 @@ const addDecryptButton = (fileDiv) => {
   button.classList.add('btn', 'btn-sm', 'btn-secondary', 'ml-2');
   button.setAttribute('data-test', 'decrypt-env');
 
+  const left = getFileContent(fileDiv, 'left');
+  const right = getFileContent(fileDiv, 'right');
+
+  if (!left || !right) {
+    alert('Could not find file contents');
+    return;
+  }
+
   button.addEventListener('click', () => {
-    const left = getFileContent(fileDiv, 'left');
-    const right = getFileContent(fileDiv, 'right');
-
-    if (!left || !right) {
-      alert('Could not find file contents');
-      return;
-    }
-
     const key = prompt('Enter encryption key')
 
     Promise.all([
