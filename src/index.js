@@ -1,4 +1,4 @@
-import { addLocationObserver, observerCallback } from "./helpers"
+import { addLocationObserver, observerCallback } from "./core"
 
 addLocationObserver(observerCallback)
 observerCallback()
