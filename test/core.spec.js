@@ -33,7 +33,7 @@ describe('sleep', () => {
 describe('initEnvViewer', () => {
   let html
 
-  before('test1', function (done) {
+  before((done) => {
     fs.readFile('./test/fixtures/github_pr.html', 'utf8', (err, data) => {
       if (err) throw err;
       html = data;
