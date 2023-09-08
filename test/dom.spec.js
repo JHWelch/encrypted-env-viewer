@@ -41,3 +41,32 @@ describe('fileContents', () => {
     });
   });
 });
+
+describe('addDecryptButton', () => {
+  it('should add a button to the file', () => {
+    const fileDiv = dom.encryptedFiles()[0];
+    const button = fileDiv.querySelector('[data-test="decrypt-env"]');
+
+    expect(button).to.not.exist;
+
+    dom.addDecryptButton(fileDiv, () => {});
+
+    expect(fileDiv.querySelector('[data-test="decrypt-env"]')).to.exist;
+  });
+});
+
+describe('addNewDiff', () => {
+  it('should replace the diff view with the new diff', () => {
+    const fileDiv = dom.encryptedFiles()[0];
+    const diff = document.createElement('div');
+    diff.innerHTML = 'new diff';
+
+    const inside = fileDiv.querySelector('[data-hydro-view]');
+
+    expect(inside.innerHTML).to.not.equal(diff.innerHTML);
+
+    dom.addNewDiff(fileDiv, diff);
+
+    expect(inside.innerHTML).to.equal(diff.outerHTML);
+  });
+});
