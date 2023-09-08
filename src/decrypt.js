@@ -6,17 +6,16 @@ export const decryptEnv = async (fullFile, key) => {
   }
 
   const fileObject = await JSON.parse(atob(fullFile));
-
   const parsedKey = CryptoJS.enc.Base64.parse(key);
-  const iv  = CryptoJS.enc.Base64.parse(fileObject.iv);
+  const parsedIv  = CryptoJS.enc.Base64.parse(fileObject.iv);
 
   const decryptedWA = CryptoJS.AES.decrypt(
     fileObject.value,
     parsedKey,
-    { iv: iv },
+    { iv: parsedIv },
   );
 
   return trimEnv(decryptedWA.toString(CryptoJS.enc.Utf8));
-}
+};
 
 export const trimEnv = (env) => env.match(/s:\d+:"([\s\S]*)";/)[1];

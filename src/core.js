@@ -12,31 +12,31 @@ const handleEncryptedFile = (fileDiv) => {
   }
 
   dom.addDecryptButton(fileDiv, () => {
-    const key = prompt('Enter encryption key')
+    const key = prompt('Enter encryption key');
 
     Promise.all([
       decryptEnv(left, key),
       decryptEnv(right, key),
     ]).then(([leftDecrypted, rightDecrypted]) => {
       dom.addNewDiff(fileDiv, diffHtml(leftDecrypted, rightDecrypted));
-    })
+    });
   });
-}
+};
 
 export const addLocationObserver = (callback) => {
-  const config = { attributes: false, childList: true, subtree: false }
+  const config = { attributes: false, childList: true, subtree: false };
 
-  const observer = new MutationObserver(callback)
+  const observer = new MutationObserver(callback);
 
-  observer.observe(document.body, config)
-}
+  observer.observe(document.body, config);
+};
 
 export const observerCallback = () => {
   if (window.location.href.startsWith('https://github.com')) {
     // Has to wait for page load
     sleep(1000).then(initEnvViewer);
   }
-}
+};
 
 export const initEnvViewer = () => dom.encryptedFiles()
   .forEach(handleEncryptedFile);

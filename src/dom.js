@@ -31,4 +31,4 @@ export default {
     inside.innerHTML = '';
     inside.appendChild(diff);
   },
-}
+};

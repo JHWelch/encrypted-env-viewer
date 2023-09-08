@@ -1,5 +1,5 @@
 import { initEnvViewer, sleep } from "../src/core";
-import fs from 'fs';
+import { loadFixture } from "./support/helpers";
 
 describe('sleep', () => {
   let clock;
@@ -31,14 +31,10 @@ describe('sleep', () => {
 });
 
 describe('initEnvViewer', () => {
-  let html
+  let html;
 
-  before('test1', function (done) {
-    fs.readFile('./test/fixtures/github_pr.html', 'utf8', (err, data) => {
-      if (err) throw err;
-      html = data;
-      done();
-    });
+  before(() => {
+    html = loadFixture('github_pr.html');
   });
 
   beforeEach(() => {

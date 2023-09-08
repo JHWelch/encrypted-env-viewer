@@ -39,6 +39,7 @@
     }],
     "object-curly-spacing": ["error", "always"],
     "quotes": ["error", "single"],
+    "semi": ["error", "always"],
     "space-before-function-paren": ["error", "always"]
   }
 }
