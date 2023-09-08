@@ -19,6 +19,7 @@ describe('diffHtml', () => {
     const doc = diffHtml('_', '_');
 
     expect(doc).to.exist;
+    expect(doc).to.be.an.instanceof(HTMLElement);
     expect(doc.querySelector('.d2h-wrapper')).to.exist;
   });
 

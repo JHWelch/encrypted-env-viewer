@@ -31,7 +31,7 @@ describe('sleep', () => {
 });
 
 describe('initEnvViewer', () => {
-  let html
+  let html;
 
   before(() => {
     html = loadFixture('github_pr.html');
