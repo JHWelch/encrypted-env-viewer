@@ -1,16 +1,12 @@
 import * as Diff2html from 'diff2html';
-import fs from 'fs';
 import { diffHtml } from '../src/diff';
+import { loadFixture } from './support/helpers';
 
 describe('diffHtml', () => {
   let html
 
-  before((done) => {
-    fs.readFile('./test/fixtures/diff.html', 'utf8', (err, data) => {
-      if (err) throw err;
-      html = data;
-      done();
-    });
+  before(() => {
+    html = loadFixture('diff.html');
   });
 
   beforeEach(() => {
