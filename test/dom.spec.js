@@ -20,3 +20,24 @@ describe('encryptedFiles', () => {
     expect(files.length).to.equal(1);
   });
 });
+
+describe('fileContents', () => {
+  describe('side can be found', () => {
+    it('should return the file contents', () => {
+      const fileDiv = dom.encryptedFiles()[0];
+      const contents = dom.fileContents(fileDiv, 'left');
+
+      expect(contents).to.exist;
+      expect(contents).to.equal('eyJpdiI6IkhTYTRJdUx0dUQyTnBaRG1sTkMySHc9PSIsInZhbHVlIjoieDJXTmNkVmkyeVg1Qmg5b1VDUGVCdz09IiwibWFjIjoiN2NiNTdkZWY4YjBlZmFmNTdkYjJhZWU5NTQyNjIwNGNiYmZjNGVmZTYxNjA5NDQxNDVlYWFiNzhkYjBkODEzYyIsInRhZyI6IiJ9');
+    });
+  });
+
+  describe('side cannot be found', () => {
+    it('should return undefined', () => {
+      const fileDiv = document.createElement('div');
+      const contents = dom.fileContents(fileDiv, 'right');
+
+      expect(contents).to.be.undefined;
+    });
+  });
+});
