@@ -40,6 +40,16 @@ describe('fileContents', () => {
       expect(contents).to.be.undefined;
     });
   });
+
+  describe('file contents cannot be found', () => {
+    it('should return undefined', () => {
+      const fileDiv = document.createElement('div');
+      fileDiv.innerHTML = '<div data-split-side="left"></div>';
+      const contents = dom.fileContents(fileDiv, 'left');
+
+      expect(contents).to.be.undefined;
+    });
+  });
 });
 
 describe('addDecryptButton', () => {
