@@ -18,6 +18,14 @@ describe('decryptEnv', () => {
       expect(decryptedEnv).to.equal('FOO=bar\n');
     });
   });
+
+  describe('when env is empty', () => {
+    it('returns empty string', async () => {
+      const decryptedEnv = await decryptEnv('', 'does not matter');
+
+      expect(decryptedEnv).to.equal('');
+    });
+  });
 });
 
 describe('trimEnv', () => {
