@@ -9,9 +9,11 @@ export const addLocationObserver = (callback) => {
   observer.observe(document.body, config);
 };
 
-export const observerCallback = () => {
+export const observerCallback = async () => {
   if (window.location.href.startsWith('https://github.com')) {
     // Has to wait for page load
-    sleep(1000).then(initEnvViewer);
+    await sleep(1000);
+
+    initEnvViewer();
   }
 };

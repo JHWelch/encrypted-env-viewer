@@ -1,5 +1,10 @@
-import { initEnvViewer } from "../src/core";
-import { loadFixture } from "./support/helpers";
+import { observerCallback } from '../src/core';
+import { loadFixture } from './support/helpers';
+import * as helpers from '../src/helpers';
+import * as env_viewer from '../src/env_viewer';
+
+var chai = require('chai');
+chai.use(require('sinon-chai'));
 
 describe('initEnvViewer', () => {
   let html;
@@ -13,7 +18,7 @@ describe('initEnvViewer', () => {
   });
 
   it('adds a button to the page with correct attributes', () => {
-    initEnvViewer();
+    env_viewer.initEnvViewer();
 
     const button = document.querySelector('[data-test="decrypt-env"]');
 
@@ -26,7 +31,32 @@ describe('initEnvViewer', () => {
   });
 });
 
-// describe('observerCallback', () => {
-//   describe('when the url matches', () => {
-//   });
-// });
+describe('observerCallback', () => {
+  before(() => {
+    sinon.replace(helpers, 'sleep', () => Promise.resolve());
+    sinon.replace(env_viewer, 'initEnvViewer', sinon.fake());
+  });
+
+  after(() => {
+    sinon.restore();
+  });
+
+  describe('when the url matches', () => {
+    let originalWindow;
+
+    beforeEach(() => {
+      originalWindow = global.window;
+      global.window = { location: { href: 'https://github.com' } };
+    });
+
+    afterEach(() => {
+      global.window = originalWindow;
+    });
+
+    it('calls initEnvViewer', async () => {
+      await observerCallback();
+
+      expect(env_viewer.initEnvViewer).to.have.been.called;
+    });
+  });
+});
