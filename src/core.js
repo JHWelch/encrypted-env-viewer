@@ -1,6 +1,7 @@
 import { decryptEnv } from './decrypt';
 import { diffHtml } from './diff';
 import dom from './dom';
+import { sleep } from './helpers';
 
 const handleEncryptedFile = (fileDiv) => {
   const left = dom.fileContents(fileDiv, 'left');
@@ -40,5 +41,3 @@ export const observerCallback = () => {
 
 export const initEnvViewer = () => dom.encryptedFiles()
   .forEach(handleEncryptedFile);
-
-export const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
