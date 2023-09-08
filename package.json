@@ -18,7 +18,8 @@
         "test": "xt-test --pattern test/**/*.spec.js",
         "coverage": "nyc --reporter=lcov npm run test",
         "sync": "xt-sync",
-        "lint": "eslint src"
+        "lint": "eslint src",
+        "fix": "eslint src --fix"
     },
     "babel": {
         "presets": [

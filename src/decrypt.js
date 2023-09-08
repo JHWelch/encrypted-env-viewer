@@ -16,6 +16,6 @@ export const decryptEnv = async (fullFile, key) => {
   );
 
   return trimEnv(decryptedWA.toString(CryptoJS.enc.Utf8));
-}
+};
 
 export const trimEnv = (env) => env.match(/s:\d+:"([\s\S]*)";/)[1];

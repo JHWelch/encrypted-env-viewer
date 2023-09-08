@@ -16,4 +16,4 @@ export const diffHtml = (left, right) => {
   header.parentNode.removeChild(header);
 
   return doc.body;
-}
+};
