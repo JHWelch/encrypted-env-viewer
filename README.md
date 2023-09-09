@@ -1,4 +1,4 @@
-# Encrypted Env Viewer
+# Encrypted Env Viewer for Laravel
 
 View encrypted .env files directly in GitHub pull requests.
 

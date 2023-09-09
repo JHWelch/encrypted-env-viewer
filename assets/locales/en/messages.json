@@ -1,11 +1,11 @@
 {
     "appName": {
-        "message": "encrypted-env-viewer"
+        "message": "Encrypted Env Viewer for Laravel"
     },
     "appShortName": {
-        "message": "encrypted-env-viewer"
+        "message": "Encrypted Env Viewer"
     },
     "appDescription": {
-        "message": "View encrypted .env files directly in GitHub pull requests."
+        "message": "View Laravel encrypted .env files directly in GitHub pull requests."
     }
 }
