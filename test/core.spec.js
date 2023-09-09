@@ -32,6 +32,8 @@ describe('initEnvViewer', () => {
 });
 
 describe('observerCallback', () => {
+  let originalWindow;
+
   before(() => {
     sinon.replace(helpers, 'sleep', () => Promise.resolve());
     sinon.replace(env_viewer, 'initEnvViewer', sinon.fake());
@@ -41,22 +43,45 @@ describe('observerCallback', () => {
     sinon.restore();
   });
 
-  describe('when the url matches', () => {
-    let originalWindow;
+  beforeEach(() => {
+    originalWindow = global.window;
+  });
 
+  afterEach(() => {
+    global.window = originalWindow;
+    env_viewer.initEnvViewer.resetHistory();
+  });
+
+  describe('when the url matches PR path', () => {
     beforeEach(() => {
-      originalWindow = global.window;
-      global.window = { location: { href: 'https://github.com' } };
-    });
-
-    afterEach(() => {
-      global.window = originalWindow;
+      global.window = { location: { href: 'https://github.com/JHWelch/encrypted-env-viewer/pull/11/files' } };
     });
 
     it('calls initEnvViewer', async () => {
       await observerCallback();
 
       expect(env_viewer.initEnvViewer).to.have.been.called;
+    });
+
+    describe('called twice', () => {
+      it('calls initEnvViewer once', async () => {
+        await observerCallback();
+        await observerCallback();
+
+        expect(env_viewer.initEnvViewer).to.have.been.calledOnce;
+      });
+    });
+  });
+
+  describe('when the url is any other github page', () => {
+    beforeEach(() => {
+      global.window = { location: { href: 'https://github.com/anything_else' } };
+    });
+
+    it('does not call initEnvViewer', async () => {
+      await observerCallback();
+
+      expect(env_viewer.initEnvViewer).to.not.have.been.called;
     });
   });
 });
