@@ -3,6 +3,7 @@ const encryptedFileSelectors =
 
 const diffView = (fileDiv) => fileDiv.querySelector('[data-hydro-view]');
 
+
 export default {
   encryptedFiles: () => document.querySelectorAll(encryptedFileSelectors),
 
@@ -13,7 +14,15 @@ export default {
       return;
     }
 
-    return div.children?.[0]?.getAttribute('data-original-line')?.substring(1);
+    const prDiv = div.querySelector('[data-original-line]');
+    if (prDiv) {
+      return prDiv.getAttribute('data-original-line').substring(1);
+    }
+
+    const comparisonDiv = div.querySelector('.blob-code-inner');
+    if (comparisonDiv) {
+      return comparisonDiv.children[0].innerHTML;
+    }
   },
 
   addDecryptButton: (fileDiv, onClick) => {
