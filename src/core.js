@@ -2,11 +2,13 @@ import { initEnvViewer } from './env_viewer';
 import { sleep } from './helpers';
 
 export const addLocationObserver = (callback) => {
-  const config = { attributes: false, childList: true, subtree: false };
-
   const observer = new MutationObserver(callback);
 
-  observer.observe(document.body, config);
+  observer.observe(document.body, {
+    attributes: false,
+    childList: true,
+    subtree: false,
+  });
 };
 
 export const observerCallback = async () => {
