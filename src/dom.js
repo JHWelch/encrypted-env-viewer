@@ -13,7 +13,7 @@ export default {
       return;
     }
 
-    return div.children[0].getAttribute('data-original-line').substring(1);
+    return div.children?.[0]?.getAttribute('data-original-line')?.substring(1);
   },
 
   addDecryptButton: (fileDiv, onClick) => {

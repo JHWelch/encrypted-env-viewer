@@ -6,13 +6,8 @@ export const initEnvViewer = () => dom.encryptedFiles()
   .forEach(handleEncryptedFile);
 
 const handleEncryptedFile = (fileDiv) => {
-  const left = dom.fileContents(fileDiv, 'left');
-  const right = dom.fileContents(fileDiv, 'right');
-
-  if (!left || !right) {
-    alert('Could not find file contents');
-    return;
-  }
+  const left = dom.fileContents(fileDiv, 'left') ?? '';
+  const right = dom.fileContents(fileDiv, 'right') ?? '';
 
   dom.addDecryptButton(fileDiv, () => {
     const key = prompt('Enter encryption key');

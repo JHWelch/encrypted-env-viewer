@@ -1,6 +1,8 @@
 import CryptoJS from 'crypto-js';
 
 export const decryptEnv = async (fullFile, key) => {
+  if (fullFile === '') { return ''; }
+
   if (key.startsWith('base64:')) {
     key = key.substring(7);
   }
