@@ -5,6 +5,10 @@ import * as env_viewer from '../src/env_viewer';
 var chai = require('chai');
 chai.use(require('sinon-chai'));
 
+const setUrl = (url) => {
+  global.window = { location: { href: url } };
+};
+
 describe('observerCallback', () => {
   let originalWindow;
 
@@ -28,7 +32,7 @@ describe('observerCallback', () => {
 
   describe('when the url matches PR path', () => {
     beforeEach(() => {
-      global.window = { location: { href: 'https://github.com/JHWelch/encrypted-env-viewer/pull/11/files' } };
+      setUrl('https://github.com/JHWelch/encrypted-env-viewer/pull/11/files');
     });
 
     it('calls initEnvViewer', async () => {
@@ -47,9 +51,21 @@ describe('observerCallback', () => {
     });
   });
 
+  describe('when the url is a comparison', () => {
+    beforeEach(() => {
+      setUrl('https://github.com/JHWelch/encrypted-env-viewer/compare/env...env-updated?expand=1');
+    });
+
+    it('calls initEnvViewer', async () => {
+      await observerCallback();
+
+      expect(env_viewer.initEnvViewer).to.have.been.called;
+    });
+  });
+
   describe('when the url is any other github page', () => {
     beforeEach(() => {
-      global.window = { location: { href: 'https://github.com/anything_else' } };
+      setUrl('https://github.com/anything_else');
     });
 
     it('does not call initEnvViewer', async () => {

@@ -4,6 +4,10 @@ import { sleep } from './helpers';
 const PR_URL_REGEX =
   /https:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+\/pull\/\d+\/files/;
 
+
+const COMPARISON_URL_REGEX =
+  /https:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+\/compare\/[A-Za-z0-9_.-]+/;
+
 export const addLocationObserver = (callback) => {
   const observer = new MutationObserver(callback);
 
@@ -15,7 +19,10 @@ export const addLocationObserver = (callback) => {
 };
 
 export const observerCallback = async () => {
-  if (!window.location.href.match(PR_URL_REGEX)) {
+  if (
+    !window.location.href.match(PR_URL_REGEX) &&
+    !window.location.href.match(COMPARISON_URL_REGEX)
+  ) {
     window.encryptedEnvViewerLoaded = false;
     return;
   }
