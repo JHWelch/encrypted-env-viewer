@@ -62,6 +62,15 @@ describe('observerCallback', () => {
 
       expect(env_viewer.initEnvViewer).to.have.been.called;
     });
+
+    describe('called twice', () => {
+      it('calls initEnvViewer once', async () => {
+        await observerCallback();
+        await observerCallback();
+
+        expect(env_viewer.initEnvViewer).to.have.been.calledOnce;
+      });
+    });
   });
 
   describe('when the url is any other github page', () => {

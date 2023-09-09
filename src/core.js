@@ -10,15 +10,18 @@ export const addLocationObserver = (callback) => {
   observer.observe(document.body, {
     attributes: false,
     childList: true,
-    subtree: false,
+    subtree: true,
   });
 };
 
 export const observerCallback = async () => {
   if (window.location.href.match(PR_URL_REGEX)) {
-    // Has to wait for page load
-    await sleep(1000);
-
-    initEnvViewer();
+    if (!window.encryptedEnvViewerLoaded) {
+      window.encryptedEnvViewerLoaded = true;
+      await sleep(1000);
+      initEnvViewer();
+    }
+  } else {
+    window.encryptedEnvViewerLoaded = false;
   }
 };
