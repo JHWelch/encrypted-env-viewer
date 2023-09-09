@@ -9,7 +9,7 @@ const handleEncryptedFile = (fileDiv) => {
   const left = dom.fileContents(fileDiv, 'left') ?? '';
   const right = dom.fileContents(fileDiv, 'right') ?? '';
 
-  dom.addDecryptButton(fileDiv, () => {
+  dom.addDecryptButton(fileDiv, (event) => {
     const key = prompt('Enter encryption key');
 
     Promise.all([
@@ -17,6 +17,7 @@ const handleEncryptedFile = (fileDiv) => {
       decryptEnv(right, key),
     ]).then(([leftDecrypted, rightDecrypted]) => {
       dom.addNewDiff(fileDiv, diffHtml(leftDecrypted, rightDecrypted));
+      event.target.remove();
     });
   });
 };
