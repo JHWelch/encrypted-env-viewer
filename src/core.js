@@ -15,13 +15,14 @@ export const addLocationObserver = (callback) => {
 };
 
 export const observerCallback = async () => {
-  if (window.location.href.match(PR_URL_REGEX)) {
-    if (!window.encryptedEnvViewerLoaded) {
-      window.encryptedEnvViewerLoaded = true;
-      await sleep(1000);
-      initEnvViewer();
-    }
-  } else {
+  if (!window.location.href.match(PR_URL_REGEX)) {
     window.encryptedEnvViewerLoaded = false;
+    return;
   }
+
+  if (window.encryptedEnvViewerLoaded) { return; }
+
+  window.encryptedEnvViewerLoaded = true;
+  await sleep(1000);
+  initEnvViewer();
 };
