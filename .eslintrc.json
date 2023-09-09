@@ -33,6 +33,7 @@
     "import/no-commonjs": "error",
     "indent": ["error", 2],
     "max-len": ["error", {
+      "ignoreRegExpLiterals": true,
       "ignoreTrailingComments": true,
       "ignoreUrls": true,
       "tabWidth": 2
