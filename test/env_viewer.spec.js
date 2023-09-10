@@ -49,6 +49,18 @@ describe('initEnvViewer', () => {
       expect(prompt).to.have.been.calledWith('Enter encryption key');
     });
 
+    describe('key is empty', () => {
+      beforeEach(() => {
+        prompt.returns('');
+      });
+
+      it('does not decrypt the envs', () => {
+        decryptButton().click();
+
+        expect(decryptEnv).to.not.have.been.called;
+      });
+    });
+
     it('decrypts the left and right envs', () => {
       decryptButton().click();
 

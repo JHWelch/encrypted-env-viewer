@@ -12,6 +12,8 @@ const handleEncryptedFile = (fileDiv) => {
   dom.addDecryptButton(fileDiv, (event) => {
     const key = prompt('Enter encryption key');
 
+    if (!key) { return; }
+
     Promise.all([
       decryptEnv(left, key),
       decryptEnv(right, key),
