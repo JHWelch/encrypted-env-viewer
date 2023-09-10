@@ -1,7 +1,7 @@
 {
     "name": "encrypted-env-viewer",
     "description": "View encrypted .env files directly in GitHub pull requests.",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "homepage": "http://chrome.google.com/webstore",
     "author": "Jordan Welch",
     "repository": {
