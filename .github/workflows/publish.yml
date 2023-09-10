@@ -48,6 +48,14 @@ jobs:
         npm ci
         npm run build
 
+    - name: Upload & release
+      uses: mnao305/chrome-extension-upload@v4.0.1
+      with:
+        file-path: release.zip
+        extension-id: ${{ secrets.EXTENSION_ID }}
+        client-id: ${{ secrets.CLIENT_ID }}
+        client-secret: ${{ secrets.CLIENT_SECRET }}
+        refresh-token: ${{ secrets.REFRESH_TOKEN }}
 
     - name: Create GitHub release
       run: gh release create v${{ env.version }} --title "Store Release v${{ env.version }}" --generate-notes  release.zip
