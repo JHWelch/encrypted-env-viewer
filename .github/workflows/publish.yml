@@ -27,6 +27,13 @@ jobs:
         node-version: '18.17.1'
         cache: npm
 
+    - name: Bump version
+      run: |
+        version=$(npm --no-git-tag-version --tag-version-prefix="" version ${{ github.event.inputs.release_type }})
+        mv src/manifest.json src/manifest.json.old
+        jq --arg version $version '. + { version: $version, version_name: $version }' src/manifest.json.old > src/manifest.json
+        rm src/manifest.json.old
+
     - name: Build
       run: |
         npm ci
