@@ -7,9 +7,9 @@ on:
         type: choice
         description: Type of Release
         options:
-          - major
-          - minor
           - patch
+          - minor
+          - major
 
 jobs:
   publish:
@@ -37,11 +37,12 @@ jobs:
         rm src/manifest.json.old
         echo "version=$version" >> "$GITHUB_ENV"
 
-    - name: Commit version bump
-      uses: EndBug/add-and-commit@v9
-      with:
-        message: Bump version to ${{ env.version }}
-        add: src/manifest.json package.json package-lock.json
+    - name: Create release commit
+      run: |
+        git config --global user.name ${{ github.actor }}
+        git config --global user.email ${{ github.actor }}@users.noreply.github.com
+        git add src/manifest.json package.json package-lock.json
+        git commit -m "Bump version to ${{ env.version }}"
 
     - name: Build
       run: |
@@ -56,6 +57,13 @@ jobs:
         client-id: ${{ secrets.CLIENT_ID }}
         client-secret: ${{ secrets.CLIENT_SECRET }}
         refresh-token: ${{ secrets.REFRESH_TOKEN }}
+
+    - name: Push changes to main
+      uses: CasperWA/push-protected@v2
+      with:
+        token: ${{ secrets.GH_RELEASE_PAT }}
+        branch: protected
+        unprotect_reviews: true
 
     - name: Create GitHub release
       run: gh release create v${{ env.version }} --title "Store Release v${{ env.version }}" --generate-notes  release.zip
