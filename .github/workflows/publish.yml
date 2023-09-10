@@ -33,6 +33,13 @@ jobs:
         mv src/manifest.json src/manifest.json.old
         jq --arg version $version '. + { version: $version, version_name: $version }' src/manifest.json.old > src/manifest.json
         rm src/manifest.json.old
+        echo "version=$version" >> "$GITHUB_ENV"
+
+    - name: Commit version bump
+      uses: EndBug/add-and-commit@v9
+      with:
+        message: Bump version to ${{ env.version }}
+        add: src/manifest.json package.json package-lock.json
 
     - name: Build
       run: |
