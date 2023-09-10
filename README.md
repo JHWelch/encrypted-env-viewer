@@ -13,12 +13,12 @@ This will watch for file changes and rebuild the extension.
 
 ### Browser Setup
 
-1. Open [about://extensions](about://extensions) in Chromium based browser.
+1. Open `about://extensions` in Chromium based browser.
 2. Check the Developer mode checkbox in the upper right.
 3. Click on the Load unpacked extension button.
 4. Select the `dist` folder.
 
-You will need to press the "Update" button on the extension when you make changes to the code.
+You will need to press the "Update" button on the extension when you make changes to the code. Or you can use the [Extension Reloader](https://chromewebstore.google.com/detail/extensions-reloader/fimgfedafeadlieiabdeeaodndnlbhid) extension to make this easier.
 
 ### All Available Commands
 
@@ -33,4 +33,4 @@ You will need to press the "Update" button on the extension when you make change
 
 ## Thanks
 
-This extension was created with [Extension CLI](https://oss.mobilefirst.me/extension-cli/)!
+This extension was created with [Extension CLI](https://oss.mobilefirst.me/extension-cli/)
