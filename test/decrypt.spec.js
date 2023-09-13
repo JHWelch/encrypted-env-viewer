@@ -1,18 +1,22 @@
 import { decryptEnv, trimEnv } from "../src/decrypt";
 
 describe('decryptEnv', () => {
-  const env = 'eyJpdiI6IkhTYTRJdUx0dUQyTnBaRG1sTkMySHc9PSIsInZhbHVlIjoieDJXTmNkVmkyeVg1Qmg5b1VDUGVCdz09IiwibWFjIjoiN2NiNTdkZWY4YjBlZmFmNTdkYjJhZWU5NTQyNjIwNGNiYmZjNGVmZTYxNjA5NDQxNDVlYWFiNzhkYjBkODEzYyIsInRhZyI6IiJ9';
+  describe('key has base64: prefix', () => {
+    const env = 'eyJpdiI6IkhTYTRJdUx0dUQyTnBaRG1sTkMySHc9PSIsInZhbHVlIjoieDJXTmNkVmkyeVg1Qmg5b1VDUGVCdz09IiwibWFjIjoiN2NiNTdkZWY4YjBlZmFmNTdkYjJhZWU5NTQyNjIwNGNiYmZjNGVmZTYxNjA5NDQxNDVlYWFiNzhkYjBkODEzYyIsInRhZyI6IiJ9';
 
-  it('decrypts encrypted .env', async () => {
-    const key = 'base64:CmbKE020myBzieJd8JZtJRSPok9536pSzsGip6PCpuI=';
-    const decryptedEnv = await decryptEnv(env, key);
+    it('decrypts encrypted .env', async () => {
+      const key = 'base64:CmbKE020myBzieJd8JZtJRSPok9536pSzsGip6PCpuI=';
+      const decryptedEnv = await decryptEnv(env, key);
 
-    expect(decryptedEnv).to.equal('FOO=bar\n');
+      expect(decryptedEnv).to.equal('FOO=bar\n');
+    });
   });
 
-  describe('when key is missing base64 prefix', () => {
+  describe('key has no prefix', () => {
+    const env = 'eyJpdiI6ImwyMEFOSjJTSVgvbmIxWHRsVnkvSVE9PSIsInZhbHVlIjoiTU93dE40Rk1EQXZPU2diZzB1K0dWdz09IiwibWFjIjoiODFlNGFkYmNiNjFkNzg5MTllNDBhODQzMzcwZDBjMDQ4ZmUzOWNmNzcwMTcxNGY5OWFlZDc3ZWY4YzI1OWY2ZCIsInRhZyI6IiJ9';
+
     it('decrypts encrypted .env', async () => {
-      const key = 'CmbKE020myBzieJd8JZtJRSPok9536pSzsGip6PCpuI=';
+      const key = 'it3Ms9BFfKYr6jQFmHRkZg14JD7pDZkH';
       const decryptedEnv = await decryptEnv(env, key);
 
       expect(decryptedEnv).to.equal('FOO=bar\n');
