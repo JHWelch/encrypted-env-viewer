@@ -3,12 +3,11 @@ import CryptoJS from 'crypto-js';
 export const decryptEnv = async (fullFile, key) => {
   if (fullFile === '') { return ''; }
 
-  if (key.startsWith('base64:')) {
-    key = key.substring(7);
-  }
+  const parsedKey = key.startsWith('base64:')
+    ? CryptoJS.enc.Base64.parse(key.substring(7))
+    : CryptoJS.enc.Utf8.parse(key);
 
   const fileObject = await JSON.parse(atob(fullFile));
-  const parsedKey = CryptoJS.enc.Base64.parse(key);
   const parsedIv  = CryptoJS.enc.Base64.parse(fileObject.iv);
 
   const decryptedWA = CryptoJS.AES.decrypt(

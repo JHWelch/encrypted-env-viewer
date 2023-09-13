@@ -10,6 +10,7 @@
     },
     "scripts": {
         "start": "xt-build -e dev -w",
+        "watch": "npm run start",
         "start:firefox": "xt-build -e dev -p firefox -w",
         "build": "xt-build -e prod",
         "build:firefox": "xt-build -e prod -p firefox",
@@ -20,6 +21,15 @@
         "sync": "xt-sync",
         "lint": "eslint src",
         "fix": "eslint src --fix"
+    },
+    "mocha": {
+      "file": "./node_modules/extension-cli/cli/rootsuite.js",
+      "require": [
+        "@babel/register"
+      ],
+      "files": [
+        "test/*.spec.js"
+      ]
     },
     "babel": {
         "presets": [
