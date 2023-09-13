@@ -1,7 +1,7 @@
 {
     "name": "encrypted-env-viewer",
     "description": "View encrypted .env files directly in GitHub pull requests.",
-    "version": "0.0.2",
+    "version": "0.1.0",
     "homepage": "http://chrome.google.com/webstore",
     "author": "Jordan Welch",
     "repository": {
@@ -24,13 +24,13 @@
         "fix": "eslint src --fix"
     },
     "mocha": {
-      "file": "./node_modules/extension-cli/cli/rootsuite.js",
-      "require": [
-        "@babel/register"
-      ],
-      "files": [
-        "test/*.spec.js"
-      ]
+        "file": "./node_modules/extension-cli/cli/rootsuite.js",
+        "require": [
+            "@babel/register"
+        ],
+        "files": [
+            "test/*.spec.js"
+        ]
     },
     "babel": {
         "presets": [
