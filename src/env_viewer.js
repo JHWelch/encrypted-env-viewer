@@ -7,13 +7,14 @@ export const initEnvViewer = () => dom.encryptedFiles()
 
 const handleEncryptedFile = (fileDiv) => dom.addDecryptButton(
   fileDiv,
-  (event) => decryptButtonCallback(event, fileDiv),
+  (event) => decryptButtonCallback(event, fileDiv.id),
 );
 
-export const decryptButtonCallback = async (event, fileDiv) => {
+export const decryptButtonCallback = async (event, fileId) => {
   const key = prompt('Enter encryption key');
 
   if (!key) { return; }
+  const fileDiv = document.getElementById(fileId);
 
   const left = dom.fileContents(fileDiv, 'left') ?? '';
   const right = dom.fileContents(fileDiv, 'right') ?? '';

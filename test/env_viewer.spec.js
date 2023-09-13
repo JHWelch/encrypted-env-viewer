@@ -79,8 +79,6 @@ describe('initEnvViewer', () => {
 });
 
 describe('decryptButtonCallback', () => {
-  const fileDiv = { fileDiv: true };
-
   let
     addNewDiff,
     decryptEnv,
@@ -97,9 +95,12 @@ describe('decryptButtonCallback', () => {
     diffHtml = sinon.stub(diff, 'diffHtml').returns('diffHtml')
     event = { target: { remove: sinon.stub() } };
     fileContents = sinon.stub(dom, 'fileContents');
-    fileContents.withArgs(fileDiv, 'left').returns('left');
-    fileContents.withArgs(fileDiv, 'right').returns('right');
+    fileContents.onCall(0).returns('left');
+    fileContents.onCall(1).returns('right');
     prompt = sinon.stub(global, 'prompt').returns('key');
+
+    global.document = new window.DOMParser()
+      .parseFromString('<div id="diff-id"></div>', 'text/html');
   });
 
   afterEach(() => {
@@ -112,7 +113,7 @@ describe('decryptButtonCallback', () => {
   });
 
   it('prompts for a key', async () => {
-    await decryptButtonCallback(event, fileDiv);
+    await decryptButtonCallback(event, global.document.body.children[0].id);
 
     expect(prompt).to.have.been.calledWith('Enter encryption key');
   });
@@ -123,28 +124,28 @@ describe('decryptButtonCallback', () => {
     });
 
     it('does not decrypt the envs', async () => {
-      await decryptButtonCallback(event, fileDiv);
+      await decryptButtonCallback(event, global.document.body.children[0].id);
 
       expect(decryptEnv).to.not.have.been.called;
     });
   });
 
   it('decrypts the left and right envs', async () => {
-    await decryptButtonCallback(event, fileDiv);
+    await decryptButtonCallback(event, global.document.body.children[0].id);
 
     expect(decryptEnv).to.have.been.calledWith('left', 'key');
     expect(decryptEnv).to.have.been.calledWith('right', 'key');
   });
 
   it('adds a new diff to the page', async () => {
-    await decryptButtonCallback(event, fileDiv);
+    await decryptButtonCallback(event, global.document.body.children[0].id);
 
     expect(diffHtml).to.have.been.calledWith('leftDecrypted', 'rightDecrypted');
-    expect(addNewDiff).to.have.been.calledWith(fileDiv, 'diffHtml');
+    expect(addNewDiff).to.have.been.calledWith(global.document.body.children[0], 'diffHtml');
   });
 
   it('removes the button from the page', async () => {
-    await decryptButtonCallback(event, fileDiv);
+    await decryptButtonCallback(event, global.document.body.children[0].id);
 
     expect(event.target.remove).to.have.been.called;
   });
