@@ -1,9 +1,10 @@
-import { observerCallback } from '../src/core';
-import * as helpers from '../src/helpers';
-import * as env_viewer from '../src/env_viewer';
+import { observerCallback } from '../src/core.js';
+import * as helpers from '../src/helpers.js';
+import * as env_viewer from '../src/env_viewer.js';
+import chai from 'chai';
+import sinonChai from 'sinon-chai';
 
-var chai = require('chai');
-chai.use(require('sinon-chai'));
+chai.use(sinonChai);
 
 const setUrl = (url) => {
   global.window = { location: { href: url } };
