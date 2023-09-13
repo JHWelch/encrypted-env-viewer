@@ -5,21 +5,25 @@ import dom from './dom';
 export const initEnvViewer = () => dom.encryptedFiles()
   .forEach(handleEncryptedFile);
 
-const handleEncryptedFile = (fileDiv) => {
+const handleEncryptedFile = (fileDiv) => dom.addDecryptButton(
+  fileDiv,
+  (event) => decryptButtonCallback(event, fileDiv.id),
+);
+
+export const decryptButtonCallback = async (event, fileId) => {
+  const key = prompt('Enter encryption key');
+
+  if (!key) { return; }
+  const fileDiv = document.getElementById(fileId);
+
   const left = dom.fileContents(fileDiv, 'left') ?? '';
   const right = dom.fileContents(fileDiv, 'right') ?? '';
 
-  dom.addDecryptButton(fileDiv, (event) => {
-    const key = prompt('Enter encryption key');
+  const [leftDecrypted, rightDecrypted] = await Promise.all([
+    decryptEnv(left, key),
+    decryptEnv(right, key),
+  ]);
 
-    if (!key) { return; }
-
-    Promise.all([
-      decryptEnv(left, key),
-      decryptEnv(right, key),
-    ]).then(([leftDecrypted, rightDecrypted]) => {
-      dom.addNewDiff(fileDiv, diffHtml(leftDecrypted, rightDecrypted));
-      event.target.remove();
-    });
-  });
+  dom.addNewDiff(fileDiv, diffHtml(leftDecrypted, rightDecrypted));
+  event.target.remove();
 };

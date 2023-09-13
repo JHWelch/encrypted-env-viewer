@@ -17,6 +17,7 @@
         "clean": "xt-clean",
         "docs": "xt-docs",
         "test": "xt-test --pattern test/**/*.spec.js",
+        "test:watch": "xt-test --pattern test/**/*.spec.js --watch",
         "coverage": "nyc --reporter=lcov npm run test",
         "sync": "xt-sync",
         "lint": "eslint src",
