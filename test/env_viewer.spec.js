@@ -75,15 +75,6 @@ describe('initEnvViewer', () => {
         'key',
       );
     });
-
-    // TODO get test to pass, does not wait for promise to resolve.
-    // it('removes itself from the page', async () => {
-    //   decryptButton().click();
-
-    //   await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    //   expect(decryptButton()).to.not.exist;
-    // });
   });
 });
 
