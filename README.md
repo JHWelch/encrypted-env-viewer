@@ -2,12 +2,29 @@
 
 View encrypted .env files directly in GitHub pull requests.
 
+## Build for Release
+
+Both build commands will generate production ready code in the `dist` folder 
+and generate a release.zip file in the root of the project for upload.
+
+### Chrome
+```bash
+npm run build
+```
+
+### Firefox
+```bash
+npm run build:firefox
+```
+
 ## Local Development 
 
 ### Code Setup
 
-1. `npm install`
-2. `npm start`
+```bash
+npm install
+npm run start
+```
 
 This will watch for file changes and rebuild the extension. 
 
@@ -20,16 +37,15 @@ This will watch for file changes and rebuild the extension.
 
 You will need to press the "Update" button on the extension when you make changes to the code. Or you can use the [Extension Reloader](https://chromewebstore.google.com/detail/extensions-reloader/fimgfedafeadlieiabdeeaodndnlbhid) extension to make this easier.
 
-### All Available Commands
+### Other Available Commands
 
-| Commands        | Description                         |
-| --------------- | ----------------------------------- |
-| `npm run start` | build extension, watch file changes |
-| `npm run build` | generate release version            |
-| `npm run clean` | remove temporary files              |
-| `npm run test`  | run unit tests                      |
-| `npm run lint`  | lint source code                    |
-| `npm run fix`   | fix lint errors                     |
+| Commands             | Description                  |
+| -------------------- | ---------------------------- |
+| `npm run clean`      | remove temporary files       |
+| `npm run test`       | run unit tests               |
+| `npm run test:watch` | run unit tests in watch mode |
+| `npm run lint`       | lint source code             |
+| `npm run fix`        | fix lint errors              |
 
 ## Thanks
 
