@@ -86,6 +86,7 @@ describe('decryptButtonCallback', () => {
     decryptEnv,
     diffHtml,
     event,
+    fileContents,
     prompt;
 
   beforeEach(() => {
@@ -95,6 +96,9 @@ describe('decryptButtonCallback', () => {
     decryptEnv.withArgs('right', 'key').resolves('rightDecrypted');
     diffHtml = sinon.stub(diff, 'diffHtml').returns('diffHtml')
     event = { target: { remove: sinon.stub() } };
+    fileContents = sinon.stub(dom, 'fileContents');
+    fileContents.withArgs(fileDiv, 'left').returns('left');
+    fileContents.withArgs(fileDiv, 'right').returns('right');
     prompt = sinon.stub(global, 'prompt').returns('key');
   });
 
@@ -103,11 +107,12 @@ describe('decryptButtonCallback', () => {
     addNewDiff.restore();
     decryptEnv.restore();
     diffHtml.restore();
+    fileContents.restore();
     prompt.restore();
   });
 
-  it('prompts for a key', () => {
-    decryptButtonCallback(event, fileDiv, 'left', 'right');
+  it('prompts for a key', async () => {
+    await decryptButtonCallback(event, fileDiv);
 
     expect(prompt).to.have.been.calledWith('Enter encryption key');
   });
@@ -117,29 +122,29 @@ describe('decryptButtonCallback', () => {
       prompt.returns('');
     });
 
-    it('does not decrypt the envs', () => {
-      decryptButtonCallback(event, fileDiv, 'left', 'right');
+    it('does not decrypt the envs', async () => {
+      await decryptButtonCallback(event, fileDiv);
 
       expect(decryptEnv).to.not.have.been.called;
     });
   });
 
-  it('decrypts the left and right envs', () => {
-    decryptButtonCallback(event, fileDiv, 'left', 'right');
+  it('decrypts the left and right envs', async () => {
+    await decryptButtonCallback(event, fileDiv);
 
     expect(decryptEnv).to.have.been.calledWith('left', 'key');
     expect(decryptEnv).to.have.been.calledWith('right', 'key');
   });
 
   it('adds a new diff to the page', async () => {
-    await decryptButtonCallback(event, fileDiv, 'left', 'right');
+    await decryptButtonCallback(event, fileDiv);
 
     expect(diffHtml).to.have.been.calledWith('leftDecrypted', 'rightDecrypted');
     expect(addNewDiff).to.have.been.calledWith(fileDiv, 'diffHtml');
   });
 
   it('removes the button from the page', async () => {
-    await decryptButtonCallback(event, fileDiv, 'left', 'right');
+    await decryptButtonCallback(event, fileDiv);
 
     expect(event.target.remove).to.have.been.called;
   });
