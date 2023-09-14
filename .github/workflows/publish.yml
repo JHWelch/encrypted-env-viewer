@@ -12,9 +12,8 @@ on:
           - major
 
 jobs:
-  publish:
+  bump-version:
     name: Publish Extension to Chrome Web Store
-    environment: production
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.GH_RELEASE_PAT }}
@@ -44,6 +43,31 @@ jobs:
         git add src/manifest.json package.json package-lock.json
         git commit -m "Bump version to ${{ env.version }}"
 
+    - name: Push changes to main
+      uses: CasperWA/push-protected@v2
+      with:
+        token: ${{ secrets.GH_RELEASE_PAT }}
+        branch: main
+        unprotect_reviews: true
+
+    - name: Create GitHub release
+      run: gh release create v${{ env.version }} --title "Store Release v${{ env.version }}" --generate-notes  release.zip
+
+  publish-to-chrome:
+    name: Publish Extension to Chrome Web Store
+    runs-on: ubuntu-latest
+    environment: Chrome Web Store
+    needs: bump-version
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.17.1'
+        cache: npm
+
     - name: Build
       run: |
         npm ci
@@ -57,13 +81,3 @@ jobs:
         client-id: ${{ secrets.CLIENT_ID }}
         client-secret: ${{ secrets.CLIENT_SECRET }}
         refresh-token: ${{ secrets.REFRESH_TOKEN }}
-
-    - name: Push changes to main
-      uses: CasperWA/push-protected@v2
-      with:
-        token: ${{ secrets.GH_RELEASE_PAT }}
-        branch: main
-        unprotect_reviews: true
-
-    - name: Create GitHub release
-      run: gh release create v${{ env.version }} --title "Store Release v${{ env.version }}" --generate-notes  release.zip
