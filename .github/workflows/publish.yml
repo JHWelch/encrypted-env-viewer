@@ -13,10 +13,11 @@ on:
 
 jobs:
   bump-version:
-    name: Publish Extension to Chrome Web Store
+    name: 'Bump Version: ${{ github.event.inputs.release_type }}'
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.bump-version.outputs.version }}
+      commit: ${{ steps.bump-version.outputs.commit }}
     env:
       GH_TOKEN: ${{ secrets.GH_RELEASE_PAT }}
 
@@ -37,7 +38,8 @@ jobs:
         mv src/manifest.json src/manifest.json.old
         jq --arg version $version '. + { version: $version, version_name: $version }' src/manifest.json.old > src/manifest.json
         rm src/manifest.json.old
-        echo "::set-output name=version::$version"
+        echo "version=$version" >> GITHUB_ENV
+        echo "version=$version" >> $GITHUB_OUTPUT
 
     - name: Create release commit
       run: |
@@ -45,12 +47,14 @@ jobs:
         git config --global user.email ${{ github.actor }}@users.noreply.github.com
         git add src/manifest.json package.json package-lock.json
         git commit -m "Bump version to ${{ env.version }}"
+        commit=$(git rev-parse HEAD)
+        echo "name=commit=$COMMIT" >> $GITHUB_OUTPUT
 
-    - name: Push changes to main
+    - name: Push changes to firefox-deploys
       uses: CasperWA/push-protected@v2
       with:
         token: ${{ secrets.GH_RELEASE_PAT }}
-        branch: main
+        branch: firefox-deploys
         unprotect_reviews: true
 
   publish-to-chrome:
@@ -58,9 +62,15 @@ jobs:
     runs-on: ubuntu-latest
     environment: Chrome Web Store
     needs: bump-version
+    env:
+      COMMIT: ${{ needs.bump-version.outputs.commit }}
+      VERSION: ${{ needs.bump-version.outputs.version }}
+
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
+      with:
+        ref: $COMMIT
 
     - name: Install Node.js
       uses: actions/setup-node@v3
@@ -93,9 +103,15 @@ jobs:
     runs-on: ubuntu-latest
     environment: Firefox Add-Ons
     needs: bump-version
+    env:
+      COMMIT: ${{ needs.bump-version.outputs.commit }}
+      VERSION: ${{ needs.bump-version.outputs.version }}
+
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
+      with:
+        ref: $COMMIT
 
     - name: Install Node.js
       uses: actions/setup-node@v3
@@ -130,9 +146,14 @@ jobs:
       - bump-version
       - publish-to-chrome
       - publish-to-firefox
+    env:
+      VERSION: ${{ needs.bump-version.outputs.version }}
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+        with:
+          ref: $COMMIT
 
       - name: Download Chrome Release
         uses: actions/download-artifact@v2
@@ -147,6 +168,6 @@ jobs:
           path: firefox-release.xpi
 
       - name: Create GitHub release
-        run: gh release create v${{ needs.bump-version.outputs.version }} >
-         --title "Store Release v${{ needs.bump-version.outputs.version }}" >
+        run: gh release create v$VERSION >
+         --title "Store Release v$VERSION" >
          --generate-notes chrome-release.zip firefox-release.xpi
