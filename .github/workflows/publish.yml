@@ -63,14 +63,13 @@ jobs:
     environment: Chrome Web Store
     needs: bump-version
     env:
-      COMMIT: ${{ needs.bump-version.outputs.commit }}
       VERSION: ${{ needs.bump-version.outputs.version }}
 
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
       with:
-        ref: $COMMIT
+        ref: ${{ needs.bump-version.outputs.commit }}
 
     - name: Install Node.js
       uses: actions/setup-node@v3
@@ -104,14 +103,13 @@ jobs:
     environment: Firefox Add-Ons
     needs: bump-version
     env:
-      COMMIT: ${{ needs.bump-version.outputs.commit }}
       VERSION: ${{ needs.bump-version.outputs.version }}
 
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
       with:
-        ref: $COMMIT
+        ref: ${{ needs.bump-version.outputs.commit }}
 
     - name: Install Node.js
       uses: actions/setup-node@v3
@@ -153,7 +151,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          ref: $COMMIT
+          ref: ${{ needs.bump-version.outputs.commit }}
 
       - name: Download Chrome Release
         uses: actions/download-artifact@v2
