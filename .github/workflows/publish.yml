@@ -1,4 +1,4 @@
-name: Publish to Chrome Web Store
+name: Publish to Stores
 
 on:
   workflow_dispatch:
