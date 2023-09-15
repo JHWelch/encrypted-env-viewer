@@ -1,5 +1,16 @@
 # Encrypted Env Viewer for Laravel
 
+<p align="center">
+  <a href="https://chrome.google.com/webstore/detail/encrypted-env-viewer-for/iicfhfioneghfihofndkpadnpadakaid">
+    <picture>
+      <source srcset="https://i.imgur.com/XBIE9pk.png" media="(prefers-color-scheme: dark)">
+      <img height="58" src="https://i.imgur.com/oGxig2F.png" alt="Chrome Web Store"></picture></a>
+  <a href="https://addons.mozilla.org/en-US/firefox/addon/encrypted-env-viewer">
+    <picture>
+      <source srcset="https://i.imgur.com/ZluoP7T.png" media="(prefers-color-scheme: dark)">
+      <img height="58" src="https://i.imgur.com/4PobQqE.png" alt="Firefox add-ons"></picture></a>
+</p>
+
 View encrypted .env files directly in GitHub pull requests.
 
 ## Build for Release
