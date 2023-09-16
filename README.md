@@ -4,19 +4,24 @@
   <a href="https://chrome.google.com/webstore/detail/encrypted-env-viewer-for/iicfhfioneghfihofndkpadnpadakaid">
     <picture>
       <source srcset="https://i.imgur.com/XBIE9pk.png" media="(prefers-color-scheme: dark)">
-      <img height="58" src="https://i.imgur.com/oGxig2F.png" alt="Chrome Web Store"></picture></a>
+      <img height="58" src="https://i.imgur.com/oGxig2F.png" alt="Chrome Web Store">
+    </picture>
+  </a>
+
   <a href="https://addons.mozilla.org/en-US/firefox/addon/encrypted-env-viewer">
     <picture>
       <source srcset="https://i.imgur.com/ZluoP7T.png" media="(prefers-color-scheme: dark)">
-      <img height="58" src="https://i.imgur.com/4PobQqE.png" alt="Firefox add-ons"></picture></a>
+      <img height="58" src="https://i.imgur.com/4PobQqE.png" alt="Firefox add-ons">
+    </picture>
+  </a>
 </p>
 
-View encrypted .env files directly in GitHub pull requests.
+View [Laravel Encrypted .env files](https://blog.laravel.com/laravel-new-environment-encryption-commands) directly in GitHub pull requests.
 
-## Build for Release
+## Manually Build for Release
 
 Both build commands will generate production ready code in the `dist` folder 
-and generate a release.zip file in the root of the project for upload.
+and generate a `release.zip` file in the root of the project for upload.
 
 ### Chrome
 ```bash
@@ -28,7 +33,7 @@ npm run build
 npm run build:firefox
 ```
 
-## Local Development 
+## Local Development (Chrome)
 
 ### Code Setup
 
@@ -47,6 +52,26 @@ This will watch for file changes and rebuild the extension.
 4. Select the `dist` folder.
 
 You will need to press the "Update" button on the extension when you make changes to the code. Or you can use the [Extension Reloader](https://chromewebstore.google.com/detail/extensions-reloader/fimgfedafeadlieiabdeeaodndnlbhid) extension to make this easier.
+
+## Local Development (Firefox)
+
+### Code Setup
+
+```bash
+npm install
+npm run start:firefox
+```
+
+This will watch for file changes and rebuild the extension.
+
+### Browser Setup
+
+1. Open `about:debugging#/runtime/this-firefox` in Firefox.
+2. Click on the Load Temporary Add-on... button.
+3. Select the `dist` folder.
+4. Select the `manifest.json` file.
+
+You will need to press the "Reload" button on the extension when you make changes to the code.
 
 ### Other Available Commands
 
