@@ -143,6 +143,7 @@ jobs:
       - publish-to-chrome
       - publish-to-firefox
     env:
+      GH_TOKEN: ${{ secrets.GH_RELEASE_PAT }}
       VERSION: ${{ needs.bump-version.outputs.version }}
 
     steps:
