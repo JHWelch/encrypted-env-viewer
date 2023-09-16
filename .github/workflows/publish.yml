@@ -48,11 +48,11 @@ jobs:
         git add src/manifest.json package.json package-lock.json
         git commit -m "Bump version to ${{ env.version }}"
 
-    - name: Push changes to firefox-deploys
+    - name: Push changes to main
       uses: CasperWA/push-protected@v2
       with:
         token: ${{ secrets.GH_RELEASE_PAT }}
-        branch: firefox-deploys
+        branch: main
         unprotect_reviews: true
 
   publish-to-chrome:
