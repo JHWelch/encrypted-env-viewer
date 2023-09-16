@@ -38,7 +38,7 @@ jobs:
         mv src/manifest.json src/manifest.json.old
         jq --arg version $version '. + { version: $version, version_name: $version }' src/manifest.json.old > src/manifest.json
         rm src/manifest.json.old
-        echo "version=$version" >> GITHUB_ENV
+        echo "version=$version" >> $GITHUB_ENV
         echo "version=$version" >> $GITHUB_OUTPUT
 
     - name: Create release commit
@@ -48,7 +48,7 @@ jobs:
         git add src/manifest.json package.json package-lock.json
         git commit -m "Bump version to ${{ env.version }}"
         commit=$(git rev-parse HEAD)
-        echo "name=commit=$COMMIT" >> $GITHUB_OUTPUT
+        echo "commit=$COMMIT" >> $GITHUB_OUTPUT
 
     - name: Push changes to firefox-deploys
       uses: CasperWA/push-protected@v2
