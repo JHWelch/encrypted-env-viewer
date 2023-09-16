@@ -56,7 +56,7 @@ jobs:
         unprotect_reviews: true
 
   publish-to-chrome:
-    name: Publish Extension to Chrome Web Store
+    name: Publish to Chrome Web Store
     runs-on: ubuntu-latest
     environment: Chrome Web Store
     needs: bump-version
@@ -96,7 +96,7 @@ jobs:
         path: release.zip
 
   publish-to-firefox:
-    name: Publish Extension to Firefox Add-ons
+    name: Publish to Firefox Add-ons
     runs-on: ubuntu-latest
     environment: Firefox Add-Ons
     needs: bump-version
