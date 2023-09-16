@@ -33,7 +33,7 @@ npm run build
 npm run build:firefox
 ```
 
-## Local Development 
+## Local Development (Chrome)
 
 ### Code Setup
 
@@ -52,6 +52,26 @@ This will watch for file changes and rebuild the extension.
 4. Select the `dist` folder.
 
 You will need to press the "Update" button on the extension when you make changes to the code. Or you can use the [Extension Reloader](https://chromewebstore.google.com/detail/extensions-reloader/fimgfedafeadlieiabdeeaodndnlbhid) extension to make this easier.
+
+## Local Development (Firefox)
+
+### Code Setup
+
+```bash
+npm install
+npm run start:firefox
+```
+
+This will watch for file changes and rebuild the extension.
+
+### Browser Setup
+
+1. Open `about:debugging#/runtime/this-firefox` in Firefox.
+2. Click on the Load Temporary Add-on... button.
+3. Select the `dist` folder.
+4. Select the `manifest.json` file.
+
+You will need to press the "Reload" button on the extension when you make changes to the code.
 
 ### Other Available Commands
 
