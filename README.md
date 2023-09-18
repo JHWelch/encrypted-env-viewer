@@ -73,7 +73,7 @@ This will watch for file changes and rebuild the extension.
 
 You will need to press the "Reload" button on the extension when you make changes to the code.
 
-### Other Available Commands
+## Other Available Commands
 
 | Commands             | Description                  |
 | -------------------- | ---------------------------- |
