@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-The only supported versions of this extension are the one published in the 
+The only supported versions of this extension are the ones published in the 
 Chrome Web Store and Addons.mozilla.org. Users should update to the newest 
 version when available.
 
