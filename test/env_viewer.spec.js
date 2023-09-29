@@ -140,7 +140,7 @@ describe('decryptButtonCallback', () => {
   it('adds a new diff to the page', async () => {
     await decryptButtonCallback(event, global.document.body.children[0].id);
 
-    expect(diffHtml).to.have.been.calledWith('leftDecrypted', 'rightDecrypted', 'auto');
+    expect(diffHtml).to.have.been.calledWith('leftDecrypted', 'rightDecrypted');
     expect(addNewDiff).to.have.been.calledWith(global.document.body.children[0], 'diffHtml');
   });
 
