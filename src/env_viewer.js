@@ -24,6 +24,10 @@ export const decryptButtonCallback = async (event, fileId) => {
     decryptEnv(right, key),
   ]);
 
-  dom.addNewDiff(fileDiv, diffHtml(leftDecrypted, rightDecrypted));
+  dom.addNewDiff(fileDiv, diffHtml(
+    leftDecrypted,
+    rightDecrypted,
+    dom.colorMode(),
+  ));
   event.target.remove();
 };

@@ -9,8 +9,11 @@ const diff2HtmlConfig = {
 
 const diff = (left, right) => Diff.createPatch('patch', left, right);
 
-export const diffHtml = (left, right) => {
-  const html = Diff2html.html(diff(left, right), diff2HtmlConfig);
+export const diffHtml = (left, right, colorScheme) => {
+  const html = Diff2html.html(diff(left, right), {
+    ...diff2HtmlConfig,
+    colorScheme,
+  });
   const doc = new window.DOMParser().parseFromString(html, 'text/html');
   const header = doc.querySelector('.d2h-file-header');
   header.parentNode.removeChild(header);
