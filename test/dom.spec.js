@@ -171,3 +171,27 @@ describe('auto color mode', () => {
     });
   });
 });
+
+describe('dark color mode', () => {
+  before(() => {
+    html = loadFixture('github_dark.html');
+  });
+
+  describe('colorMode', () => {
+    it('should return the dark color mode', () => {
+      expect(dom.colorMode()).to.equal('dark');
+    });
+  });
+});
+
+describe('light color mode', () => {
+  before(() => {
+    html = loadFixture('github_light.html');
+  });
+
+  describe('colorMode', () => {
+    it('should return the light color mode', () => {
+      expect(dom.colorMode()).to.equal('light');
+    });
+  });
+});
