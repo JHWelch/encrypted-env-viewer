@@ -158,3 +158,16 @@ describe('Comparison page', () => {
     });
   });
 });
+
+
+describe('auto color mode', () => {
+  before(() => {
+    html = loadFixture('github_auto.html');
+  });
+
+  describe('colorMode', () => {
+    it('should return the auto color mode', () => {
+      expect(dom.colorMode()).to.equal('auto');
+    });
+  });
+});

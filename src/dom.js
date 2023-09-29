@@ -25,6 +25,8 @@ export default {
     }
   },
 
+  colorMode: () => document.querySelector('html').dataset.colorMode,
+
   addDecryptButton: (fileDiv, onClick) => {
     let button = document.createElement('button');
     button.innerHTML = 'Decrypt';
