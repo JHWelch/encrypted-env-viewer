@@ -90,7 +90,7 @@ jobs:
         refresh-token: ${{ secrets.REFRESH_TOKEN }}
 
     - name: Store Build Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: chrome-release
         path: release.zip
@@ -130,7 +130,7 @@ jobs:
         api-secret: ${{ secrets.FIREFOX_API_SECRET }}
 
     - name: Store Build Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: firefox-release
         path: release.zip
@@ -153,13 +153,13 @@ jobs:
           ref: ${{ github.ref }}
 
       - name: Download Chrome Release
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: chrome-release
           path: chrome-release.zip
 
       - name: Download Firefox Release
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: firefox-release
           path: firefox-release.xpi
