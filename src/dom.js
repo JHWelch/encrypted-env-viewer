@@ -29,6 +29,8 @@ export default {
 
   encryptedFiles: () => document.querySelectorAll(encryptedFileSelectors),
 
+  encryptedFileSelectors,
+
   fileContents: (fileDiv, side) => {
     const div = fileDiv
       .querySelector(`[data-side="${side}"][data-original-line]`);
