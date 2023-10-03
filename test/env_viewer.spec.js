@@ -101,7 +101,7 @@ describe('decryptButtonCallback', () => {
     prompt = sinon.stub(global, 'prompt').returns('key');
 
     global.document = new window.DOMParser()
-      .parseFromString(loadFixture('github_side_by_side.html'), 'text/html');
+      .parseFromString(loadFixture('github_diff_mode/pr_side_by_side.html'), 'text/html');
     fileDiv = global.document.querySelector(dom.encryptedFileSelectors);
   });
 
