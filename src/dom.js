@@ -37,8 +37,6 @@ export default {
 
     return fileDiv
       .querySelector(`[data-split-side="${side}"] .blob-code-inner`)
-      ?.children
-      ?.[0]
       ?.innerHTML;
   },
 };
