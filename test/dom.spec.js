@@ -162,7 +162,7 @@ describe('Comparison page', () => {
 
 describe('auto color mode', () => {
   before(() => {
-    html = loadFixture('github_auto.html');
+    html = loadFixture('github_color_mode/auto.html');
   });
 
   describe('colorMode', () => {
@@ -174,7 +174,7 @@ describe('auto color mode', () => {
 
 describe('dark color mode', () => {
   before(() => {
-    html = loadFixture('github_dark.html');
+    html = loadFixture('github_color_mode/dark.html');
   });
 
   describe('colorMode', () => {
@@ -186,7 +186,7 @@ describe('dark color mode', () => {
 
 describe('light color mode', () => {
   before(() => {
-    html = loadFixture('github_light.html');
+    html = loadFixture('github_color_mode/light.html');
   });
 
   describe('colorMode', () => {
