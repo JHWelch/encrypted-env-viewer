@@ -23,6 +23,10 @@ export default {
 
   colorMode: () => document.querySelector('html').dataset.colorMode,
 
+  diffMode: () => document.getElementById('diff_unified_lg').checked
+    ? 'line-by-line'
+    : 'side-by-side',
+
   encryptedFiles: () => document.querySelectorAll(encryptedFileSelectors),
 
   fileContents: (fileDiv, side) => {

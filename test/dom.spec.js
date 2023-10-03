@@ -195,3 +195,27 @@ describe('light color mode', () => {
     });
   });
 });
+
+describe('line by line comparison view', () => {
+  describe('diffMode', () => {
+    before(() => {
+      html = loadFixture('github_line_by_line.html');
+    });
+
+    it('should return the line by line diff mode', () => {
+      expect(dom.diffMode()).to.equal('line-by-line');
+    });
+  });
+});
+
+describe('side by side comparison view', () => {
+  describe('diffMode', () => {
+    before(() => {
+      html = loadFixture('github_side_by_side.html');
+    });
+
+    it('should return the side by side diff mode', () => {
+      expect(dom.diffMode()).to.equal('side-by-side');
+    });
+  });
+});
