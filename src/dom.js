@@ -1,8 +1,8 @@
 const encryptedFileSelectors =
   'div[data-file-type=".encrypted"][data-details-container-group="file"]';
 
-const diffView = (fileDiv) => fileDiv.querySelector('[data-hydro-view]');
-
+const diffView = (fileDiv) =>
+  fileDiv.querySelector('[data-hydro-view]');
 
 export default {
   addDecryptButton: (fileDiv, onClick) => {
@@ -26,15 +26,16 @@ export default {
   encryptedFiles: () => document.querySelectorAll(encryptedFileSelectors),
 
   fileContents: (fileDiv, side) => {
-    const div = fileDiv.querySelector(`[data-split-side="${side}"]`);
+    const div = fileDiv
+      .querySelector(`[data-side="${side}"][data-original-line]`);
 
     if (!div) {
       return;
     }
 
-    const prDiv = div.querySelector('[data-original-line]');
-    if (prDiv) {
-      return prDiv.getAttribute('data-original-line').substring(1);
+    const data = div.getAttribute('data-original-line');
+    if (data) {
+      return data.substring(1);
     }
 
     const comparisonDiv = div.querySelector('.blob-code-inner');
