@@ -23,9 +23,19 @@ export default {
 
   colorMode: () => document.querySelector('html').dataset.colorMode,
 
-  diffMode: () => document.getElementById('diff_unified_lg').checked
-    ? 'line-by-line'
-    : 'side-by-side',
+  diffMode: () => {
+    const unifiedOptionButton = document.getElementById('diff_unified_lg');
+    if (unifiedOptionButton) {
+      return unifiedOptionButton.checked ? 'line-by-line' : 'side-by-side';
+    }
+
+    const selectedDiffButton = document
+      .querySelector('.SegmentedControl-item--selected button[name="diff"]');
+
+    return selectedDiffButton.value === 'unified'
+      ? 'line-by-line'
+      : 'side-by-side';
+  },
 
   encryptedFiles: () => document.querySelectorAll(encryptedFileSelectors),
 
