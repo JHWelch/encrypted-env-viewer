@@ -33,7 +33,7 @@ describe('diffHtml', () => {
     expect(doc.querySelector('.d2h-file-header')).to.not.exist;
   });
 
-  describe('dark mode', () => {
+  describe('colorScheme: dark', () => {
     it('calls with dark colorScheme', () => {
       diffHtml('_', '_', 'dark');
 
@@ -49,7 +49,7 @@ describe('diffHtml', () => {
     });
   });
 
-  describe('light mode', () => {
+  describe('colorScheme: light', () => {
     it('calls with light colorScheme', () => {
       diffHtml('_', '_', 'light');
 
@@ -65,7 +65,7 @@ describe('diffHtml', () => {
     });
   });
 
-  describe('auto mode', () => {
+  describe('colorScheme: auto', () => {
     it('calls with auto colorScheme', () => {
       diffHtml('_', '_', 'auto');
 
@@ -73,6 +73,38 @@ describe('diffHtml', () => {
         patch,
         sinon.match({
           outputFormat: 'side-by-side',
+          drawFileList: false,
+          matching: 'lines',
+          colorScheme: 'auto'
+        })
+      );
+    });
+  });
+
+  describe('outputFormat: side-by-side', () => {
+    it('calls with side-by-side outputFormat', () => {
+      diffHtml('_', '_', 'auto', 'side-by-side');
+
+      expect(Diff2html.html).to.have.been.calledWith(
+        patch,
+        sinon.match({
+          outputFormat: 'side-by-side',
+          drawFileList: false,
+          matching: 'lines',
+          colorScheme: 'auto'
+        })
+      );
+    });
+  });
+
+  describe('outputFormat: line-by-line', () => {
+    it('calls with line-by-line outputFormat', () => {
+      diffHtml('_', '_', 'auto', 'line-by-line');
+
+      expect(Diff2html.html).to.have.been.calledWith(
+        patch,
+        sinon.match({
+          outputFormat: 'line-by-line',
           drawFileList: false,
           matching: 'lines',
           colorScheme: 'auto'
