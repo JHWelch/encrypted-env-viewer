@@ -160,62 +160,58 @@ describe('Comparison page', () => {
 });
 
 
-describe('auto color mode', () => {
-  before(() => {
-    html = loadFixture('github_color_mode/auto.html');
-  });
+describe('colorMode', () => {
+  describe('auto color mode', () => {
+    before(() => {
+      html = loadFixture('github_color_mode/auto.html');
+    });
 
-  describe('colorMode', () => {
     it('should return the auto color mode', () => {
       expect(dom.colorMode()).to.equal('auto');
     });
   });
-});
 
-describe('dark color mode', () => {
-  before(() => {
-    html = loadFixture('github_color_mode/dark.html');
-  });
-
-  describe('colorMode', () => {
-    it('should return the dark color mode', () => {
-      expect(dom.colorMode()).to.equal('dark');
+  describe('dark color mode', () => {
+    before(() => {
+      html = loadFixture('github_color_mode/dark.html');
     });
-  });
-});
 
-describe('light color mode', () => {
-  before(() => {
-    html = loadFixture('github_color_mode/light.html');
+      it('should return the dark color mode', () => {
+        expect(dom.colorMode()).to.equal('dark');
+      });
   });
 
-  describe('colorMode', () => {
+  describe('light color mode', () => {
+    before(() => {
+      html = loadFixture('github_color_mode/light.html');
+    });
+
     it('should return the light color mode', () => {
       expect(dom.colorMode()).to.equal('light');
     });
   });
 });
 
-describe('line by line comparison view', () => {
-  describe('diffMode', () => {
-    before(() => {
-      html = loadFixture('github_diff_mode/pr_line_by_line.html');
+describe('diffMode', () => {
+  describe('PR', () => {
+    describe('line by line comparison view', () => {
+      before(() => {
+        html = loadFixture('github_diff_mode/pr_line_by_line.html');
+      });
+
+      it('should return the line by line diff mode', () => {
+        expect(dom.diffMode()).to.equal('line-by-line');
+      });
     });
 
-    it('should return the line by line diff mode', () => {
-      expect(dom.diffMode()).to.equal('line-by-line');
-    });
-  });
-});
+    describe('side by side comparison view', () => {
+      before(() => {
+        html = loadFixture('github_diff_mode/pr_side_by_side.html');
+      });
 
-describe('side by side comparison view', () => {
-  describe('diffMode', () => {
-    before(() => {
-      html = loadFixture('github_diff_mode/pr_side_by_side.html');
-    });
-
-    it('should return the side by side diff mode', () => {
-      expect(dom.diffMode()).to.equal('side-by-side');
+      it('should return the side by side diff mode', () => {
+        expect(dom.diffMode()).to.equal('side-by-side');
+      });
     });
   });
 });
