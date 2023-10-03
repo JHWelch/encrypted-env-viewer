@@ -5,6 +5,24 @@ const diffView = (fileDiv) => fileDiv.querySelector('[data-hydro-view]');
 
 
 export default {
+  addDecryptButton: (fileDiv, onClick) => {
+    let button = document.createElement('button');
+    button.innerHTML = 'Decrypt';
+    button.classList.add('btn', 'btn-sm', 'btn-secondary', 'ml-2');
+    button.setAttribute('data-test', 'decrypt-env');
+    button.addEventListener('click', onClick);
+
+    fileDiv.children[0].appendChild(button);
+  },
+
+  addNewDiff: (fileDiv, diff) => {
+    const inside = diffView(fileDiv);
+    inside.innerHTML = '';
+    inside.appendChild(diff);
+  },
+
+  colorMode: () => document.querySelector('html').dataset.colorMode,
+
   encryptedFiles: () => document.querySelectorAll(encryptedFileSelectors),
 
   fileContents: (fileDiv, side) => {
@@ -23,23 +41,5 @@ export default {
     if (comparisonDiv) {
       return comparisonDiv.children[0].innerHTML;
     }
-  },
-
-  colorMode: () => document.querySelector('html').dataset.colorMode,
-
-  addDecryptButton: (fileDiv, onClick) => {
-    let button = document.createElement('button');
-    button.innerHTML = 'Decrypt';
-    button.classList.add('btn', 'btn-sm', 'btn-secondary', 'ml-2');
-    button.setAttribute('data-test', 'decrypt-env');
-    button.addEventListener('click', onClick);
-
-    fileDiv.children[0].appendChild(button);
-  },
-
-  addNewDiff: (fileDiv, diff) => {
-    const inside = diffView(fileDiv);
-    inside.innerHTML = '';
-    inside.appendChild(diff);
   },
 };
