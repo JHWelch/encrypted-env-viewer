@@ -29,16 +29,15 @@ export default {
     const div = fileDiv
       .querySelector(`[data-side="${side}"][data-original-line]`);
 
-    if (!div) {
-      return;
+    if (div) {
+      const data = div.getAttribute('data-original-line');
+      if (data) {
+        return data.substring(1);
+      }
     }
 
-    const data = div.getAttribute('data-original-line');
-    if (data) {
-      return data.substring(1);
-    }
-
-    const comparisonDiv = div.querySelector('.blob-code-inner');
+    const comparisonDiv = fileDiv
+      .querySelector(`[data-split-side="${side}"] .blob-code-inner`);
     if (comparisonDiv) {
       return comparisonDiv.children[0].innerHTML;
     }
