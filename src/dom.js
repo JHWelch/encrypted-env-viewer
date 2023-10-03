@@ -30,16 +30,15 @@ export default {
       .querySelector(`[data-side="${side}"][data-original-line]`);
 
     if (div) {
-      const data = div.getAttribute('data-original-line');
-      if (data) {
-        return data.substring(1);
-      }
+      return div
+        .getAttribute('data-original-line')
+        ?.substring(1);
     }
 
-    const comparisonDiv = fileDiv
-      .querySelector(`[data-split-side="${side}"] .blob-code-inner`);
-    if (comparisonDiv) {
-      return comparisonDiv.children[0].innerHTML;
-    }
+    return fileDiv
+      .querySelector(`[data-split-side="${side}"] .blob-code-inner`)
+      ?.children
+      ?.[0]
+      ?.innerHTML;
   },
 };
