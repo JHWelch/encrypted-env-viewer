@@ -4,16 +4,10 @@ const encryptedFileSelectors =
 const diffView = (fileDiv) =>
   fileDiv.querySelector('[data-hydro-view]');
 
-const fileContentsPr = (fileDiv, side) => {
-  const prDiv = fileDiv
-    .querySelector(`[data-side="${side}"][data-original-line]`);
-
-  if (prDiv) {
-    return prDiv
-      .getAttribute('data-original-line')
-      ?.substring(1);
-  }
-};
+const fileContentsPr = (fileDiv, side) => fileDiv
+  .querySelector(`[data-side="${side}"][data-original-line]`)
+  ?.getAttribute('data-original-line')
+  ?.substring(1);
 
 const fileContentsComparison = (fileDiv, side) => {
   const comparisonDiv = fileDiv
