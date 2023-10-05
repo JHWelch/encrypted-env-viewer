@@ -1,168 +1,319 @@
-<div id="files" class="diff-view  js-diff-container js-code-nav-container" data-hpc="">
+<div id="files_bucket" class="files-bucket ">
+  <div class="position-relative px-4" style="width: 100vw; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;">
+    <div id="diff" class="uncommentable">
+      <div id="toc" class="details-collapse table-of-contents js-details-container Details flex-1">
+        <div class="d-flex d-inline-block float-right">
+          <!-- '"` -->
+          <!-- </textarea></xmp> -->
+          <form data-turbo="false" action="/users/diffview" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="ZoJYQApWzBckqqwi-myw_Buvd1Ny0hfhmb-YhEHIKtHZZbUYU4nc6JyigOQzVvWZ5CYvaAy6jk4XhbNyPcfsqQ">
+            <segmented-control data-catalyst="">
+              <ul aria-label="Diff view" role="list" data-view-component="true" class="SegmentedControl">
+                <li class="SegmentedControl-item SegmentedControl-item--selected" role="listitem" data-targets="segmented-control.items">
+                  <button data-disable-with="" name="diff" value="split" data-action="click:segmented-control#select" aria-current="true" type="submit" data-view-component="true" class="Button--invisible Button--small Button Button--invisible-noVisuals"> <span class="Button-content">
+                      <span class="Button-label" data-content="Split">Split</span>
+                    </span>
+                  </button>
+                </li>
 
+                <li class="SegmentedControl-item" role="listitem" data-targets="segmented-control.items">
+                  <button data-disable-with="" name="diff" value="unified" data-action="click:segmented-control#select" aria-current="false" type="submit" data-view-component="true" class="Button--invisible Button--small Button Button--invisible-noVisuals"> <span class="Button-content">
+                      <span class="Button-label" data-content="Unified">Unified</span>
+                    </span>
+                  </button>
+                </li>
 
-  <div class="container-md js-file-filter-blankslate" data-target="diff-file-filter.blankslate" hidden="">
-
-    <div data-view-component="true" class="blankslate">
-      <svg aria-hidden="true" height="24" viewBox="0 0 24 24" version="1.1" width="24" data-view-component="true" class="octicon octicon-filter blankslate-icon">
-        <path d="M2.75 6a.75.75 0 0 0 0 1.5h18.5a.75.75 0 0 0 0-1.5H2.75ZM6 11.75a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H6.75a.75.75 0 0 1-.75-.75Zm4 4.938a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path>
-      </svg>
-
-      <h2 data-view-component="true" class="blankslate-heading"> There are no files selected for viewing
-      </h2>
-    </div>
-  </div>
-  <div class="js-diff-progressive-container">
-    <div id="diff-9cd33b87bdc1dacbf505f23f57f3ad67423796482450e249d75502632f1da093" data-details-container-group="file" class="file js-file js-details-container js-targetable-element show-inline-notes Details
-              Details--on open
-
-
-
-
-
-             js-tagsearch-file
-           " data-file-type=".encrypted" data-file-deleted="false" data-tagsearch-path=".env.foo.encrypted" data-tagsearch-lang="" data-targets="diff-file-filter.diffEntries">
-      <div class="file-header d-flex flex-md-row flex-column flex-md-items-center file-header--expandable js-file-header js-skip-tagsearch " data-path=".env.foo.encrypted" data-short-path="9cd33b8" data-anchor="diff-9cd33b87bdc1dacbf505f23f57f3ad67423796482450e249d75502632f1da093" data-file-type=".encrypted" data-file-deleted="false">
-        <div class="file-info flex-auto min-width-0 mb-md-0 mb-2">
-          <button type="button" class="btn-octicon js-details-target" aria-label="Toggle diff contents" aria-expanded="true" style="width: 22px;">
-            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-chevron-down Details-content--hidden">
-              <path d="M12.78 5.22a.749.749 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.06 0L3.22 6.28a.749.749 0 1 1 1.06-1.06L8 8.939l3.72-3.719a.749.749 0 0 1 1.06 0Z"></path>
-            </svg>
-            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-chevron-right Details-content--shown">
-              <path d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06Z"></path>
-            </svg>
-          </button>
-
-          <span class="sr-only">
-            2 changes: 1 addition &amp; 1 deletion
-          </span>
-          <span class="diffstat" aria-hidden="true">2 <span class="diffstat-block-added"></span><span class="diffstat-block-deleted"></span><span class="diffstat-block-neutral"></span><span class="diffstat-block-neutral"></span><span class="diffstat-block-neutral"></span></span>
-
-          <span class="Truncate">
-            <a title=".env.foo.encrypted" class="Link--primary Truncate-text" href="#diff-9cd33b87bdc1dacbf505f23f57f3ad67423796482450e249d75502632f1da093">.env.foo.encrypted</a>
-
-            <clipboard-copy data-copy-feedback="Copied!" aria-label="Copy" value=".env.foo.encrypted" data-view-component="true" class="Link--onHover color-fg-muted ml-2 mr-2" tabindex="0" role="button">
-              <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy">
-                <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path>
-                <path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
-              </svg>
-              <svg style="display: none;" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check color-fg-success">
-                <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
-              </svg>
-            </clipboard-copy>
-          </span>
+              </ul>
+            </segmented-control>
+          </form>
         </div>
 
-        <div class="file-actions pt-0 mb-md-0 mb-2 ml-md-2 flex-shrink-0 flex-md-justify-end">
-          <div class="d-flex flex-justify-end">
-            <details class="js-file-header-dropdown dropdown details-overlay details-reset pr-2 pl-2">
-              <summary class="height-full" aria-haspopup="menu" role="button">
-                <div class="height-full d-flex flex-items-center Link--secondary">
-                  <svg aria-label="Show options" role="img" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-kebab-horizontal">
-                    <path d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
-                  </svg>
-                </div>
-              </summary>
-              <details-menu class="dropdown-menu dropdown-menu-sw show-more-popover color-fg-default position-absolute f5" style="width:185px; z-index:99; right: -4px;" role="menu" data-focus-trap="active"><span class="sentinel" tabindex="0" aria-hidden="true"></span>
-                <label role="menuitemradio" class="dropdown-item btn-link text-normal d-block pl-5" tabindex="0" aria-checked="true">
-                  <span class="position-absolute ml-n4"><svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check">
-                      <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
-                    </svg></span>
-                  <input type="checkbox" checked="" class="d-none js-toggle-file-notes">
-                  Show comments
-                </label>
 
-                <div role="none" class="dropdown-divider"></div>
+        <div class="toc-diff-stats">
+          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-file-diff">
+            <path d="M1 1.75C1 .784 1.784 0 2.75 0h7.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16H2.75A1.75 1.75 0 0 1 1 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25V4.664a.25.25 0 0 0-.073-.177l-2.914-2.914a.25.25 0 0 0-.177-.073ZM8 3.25a.75.75 0 0 1 .75.75v1.5h1.5a.75.75 0 0 1 0 1.5h-1.5v1.5a.75.75 0 0 1-1.5 0V7h-1.5a.75.75 0 0 1 0-1.5h1.5V4A.75.75 0 0 1 8 3.25Zm-3 8a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1-.75-.75Z"></path>
+          </svg>
+          Showing
+          <button type="button" class="btn-link js-details-target" aria-expanded="false">
+            1 changed file
+          </button>
+          with
+          <strong>1 addition</strong>
+          and <strong>1 deletion</strong>.
+        </div>
 
-                <a href="/JHWelch/encrypted-env-viewer/blob/1fb9e8c30784947ac6033d8bb6d36c2f554fc139/.env.foo.encrypted" class="pl-5 dropdown-item btn-link" rel="nofollow" role="menuitem" data-ga-click="View file, click, location:files_changed_dropdown">
-                  View file
-                </a>
+        <ol class="content collapse js-transitionable overflow-y-hidden width-full">
+          <li>
+            <span class="diffstat float-right">
+              <span class="color-fg-success">
+                +1
+              </span>
+              <span class="color-fg-danger">
+                −1
+              </span>
+              <a href="#diff-7290b1863cf336ec39d36850cfaac85aed83ccc229a6e0cd42b3f8079a241c8d" class="tooltipped tooltipped-s" aria-label="2 lines changed">
+                <span class="diffstat-block-added"></span><span class="diffstat-block-deleted"></span><span class="diffstat-block-neutral"></span><span class="diffstat-block-neutral"></span><span class="diffstat-block-neutral"></span>
+              </a>
+            </span>
+            <svg title="modified" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-diff-modified">
+              <path d="M13.25 1c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 13.25 15H2.75A1.75 1.75 0 0 1 1 13.25V2.75C1 1.784 1.784 1 2.75 1ZM2.75 2.5a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM8 10a2 2 0 1 1-.001-3.999A2 2 0 0 1 8 10Z"></path>
+            </svg>
+            <a href="#diff-7290b1863cf336ec39d36850cfaac85aed83ccc229a6e0cd42b3f8079a241c8d">.env.encrypted</a>
+          </li>
+        </ol>
+      </div>
 
-                <button type="button" disabled="" role="menuitem" class="pl-5 dropdown-item btn-link" aria-label="You must be signed in and have push access to make changes.">
-                  Edit file
-                </button>
 
-                <button type="button" disabled="" role="menuitem" class="pl-5 dropdown-item btn-link" aria-label="You must be signed in and have push access to delete this file.">
-                  Delete file
-                </button>
+      <template class="js-comment-button-template">
+        <button data-path="{{ path }}" data-anchor="{{ anchor }}" data-position="{{ position }}" data-side="{{ side }}" data-line="{{ line }}" data-original-line="{{ originalLine }}" aria-label="Add line comment" type="button" data-view-component="true" class="add-line-comment js-add-line-comment js-add-single-line-comment btn-link"> <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-plus">
+            <path d="M7.75 2a.75.75 0 0 1 .75.75V7h4.25a.75.75 0 0 1 0 1.5H8.5v4.25a.75.75 0 0 1-1.5 0V8.5H2.75a.75.75 0 0 1 0-1.5H7V2.75A.75.75 0 0 1 7.75 2Z"></path>
+          </svg>
+        </button></template>
 
-                <span class="sentinel" tabindex="0" aria-hidden="true"></span>
-              </details-menu>
-            </details>
+      <div id="files" class="diff-view  js-diff-container js-code-nav-container" data-hpc="">
+
+
+        <div class="container-md js-file-filter-blankslate" data-target="diff-file-filter.blankslate" hidden="">
+
+          <div data-view-component="true" class="blankslate">
+            <svg aria-hidden="true" height="24" viewBox="0 0 24 24" version="1.1" width="24" data-view-component="true" class="octicon octicon-filter blankslate-icon">
+              <path d="M2.75 6a.75.75 0 0 0 0 1.5h18.5a.75.75 0 0 0 0-1.5H2.75ZM6 11.75a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H6.75a.75.75 0 0 1-.75-.75Zm4 4.938a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path>
+            </svg>
+
+            <h2 data-view-component="true" class="blankslate-heading"> There are no files selected for viewing
+            </h2>
+
+
           </div>
         </div>
-        <button class="btn btn-sm btn-secondary ml-2">Decrypt</button>
-      </div>
+        <div class="js-diff-progressive-container">
+          <div id="diff-7290b1863cf336ec39d36850cfaac85aed83ccc229a6e0cd42b3f8079a241c8d" data-details-container-group="file" class="file js-file js-details-container js-targetable-element show-inline-notes Details
+            Details--on open
 
-      <div class="js-file-content Details-content--hidden position-relative" data-hydro-view="{&quot;event_type&quot;:&quot;pull_request.select_diff_range&quot;,&quot;payload&quot;:{&quot;actor_id&quot;:4480375,&quot;pull_request_id&quot;:null,&quot;repository_id&quot;:null,&quot;diff_type&quot;:&quot;SPLIT&quot;,&quot;whitespace_ignored&quot;:false,&quot;originating_url&quot;:&quot;https://github.com/JHWelch/encrypted-env-viewer/compare/file-list?range=env...env-updated&quot;,&quot;user_id&quot;:4480375}}" data-hydro-view-hmac="d86c32a24a4dc924a0dcd3254d4c0c5be0e07518a0bca53784b1756769bdbd4f">
 
-        <div class="data highlight js-blob-wrapper" style="">
-          <template class="js-file-alert-template">
-            <div data-view-component="true" class="flash flash-warn flash-full d-flex flex-items-center">
-              <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-alert">
-                <path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
-              </svg>
-              <span>
-                This file contains bidirectional Unicode text that may be interpreted or compiled differently than what appears below. To review, open the file in an editor that reveals hidden Unicode characters.
-                <a class="Link--inTextBlock" href="https://github.co/hiddenchars" target="_blank">Learn more about bidirectional Unicode characters</a>
-              </span>
 
-              <div data-view-component="true" class="flash-action"> <a href="{{ revealButtonHref }}" data-view-component="true" class="btn-sm btn"> Show hidden characters
-                </a>
+
+
+           js-tagsearch-file
+         " data-file-type=".encrypted" data-file-deleted="false" data-tagsearch-path=".env.encrypted" data-tagsearch-lang="" data-targets="diff-file-filter.diffEntries">
+            <div class="file-header d-flex flex-md-row flex-column flex-md-items-center file-header--expandable js-file-header js-skip-tagsearch " data-path=".env.encrypted" data-short-path="7290b18" data-anchor="diff-7290b1863cf336ec39d36850cfaac85aed83ccc229a6e0cd42b3f8079a241c8d" data-file-type=".encrypted" data-file-deleted="false">
+              <div class="file-info flex-auto min-width-0 mb-md-0 mb-2">
+                <button type="button" class="btn-octicon js-details-target" aria-label="Toggle diff contents" aria-expanded="true" style="width: 22px;">
+                  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-chevron-down Details-content--hidden">
+                    <path d="M12.78 5.22a.749.749 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.06 0L3.22 6.28a.749.749 0 1 1 1.06-1.06L8 8.939l3.72-3.719a.749.749 0 0 1 1.06 0Z"></path>
+                  </svg>
+                  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-chevron-right Details-content--shown">
+                    <path d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06Z"></path>
+                  </svg>
+                </button>
+
+
+
+
+                <span class="sr-only">
+                  2 changes: 1 addition &amp; 1 deletion
+                </span>
+                <span class="diffstat" aria-hidden="true">2 <span class="diffstat-block-added"></span><span class="diffstat-block-deleted"></span><span class="diffstat-block-neutral"></span><span class="diffstat-block-neutral"></span><span class="diffstat-block-neutral"></span></span>
+
+
+                <span class="Truncate">
+                  <a title=".env.encrypted" class="Link--primary Truncate-text" href="#diff-7290b1863cf336ec39d36850cfaac85aed83ccc229a6e0cd42b3f8079a241c8d">.env.encrypted</a>
+
+                  <clipboard-copy data-copy-feedback="Copied!" aria-label="Copy" value=".env.encrypted" data-view-component="true" class="Link--onHover color-fg-muted ml-2 mr-2" tabindex="0" role="button">
+                    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy">
+                      <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path>
+                      <path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+                    </svg>
+                    <svg style="display: none;" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check color-fg-success">
+                      <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+                    </svg>
+                  </clipboard-copy>
+                </span>
+
+
+
+              </div>
+
+              <div class="file-actions pt-0 mb-md-0 mb-2 ml-md-2 flex-shrink-0 flex-md-justify-end">
+                <div class="d-flex flex-justify-end">
+
+
+
+
+
+                  <details class="js-file-header-dropdown dropdown details-overlay details-reset pr-2 pl-2">
+                    <summary class="height-full" aria-haspopup="menu" role="button">
+                      <div class="height-full d-flex flex-items-center Link--secondary">
+                        <svg aria-label="Show options" role="img" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-kebab-horizontal">
+                          <path d="M8 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm13 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
+                        </svg>
+                      </div>
+                    </summary>
+                    <details-menu class="dropdown-menu dropdown-menu-sw show-more-popover color-fg-default position-absolute f5" style="width:185px; z-index:99; right: -4px;" role="menu" data-focus-trap="active"><span class="sentinel" tabindex="0" aria-hidden="true"></span>
+                      <label role="menuitemradio" class="dropdown-item btn-link text-normal d-block pl-5" tabindex="0" aria-checked="true">
+                        <span class="position-absolute ml-n4"><svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check">
+                            <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+                          </svg></span>
+                        <input type="checkbox" checked="" class="d-none js-toggle-file-notes">
+                        Show comments
+                      </label>
+
+                      <div role="none" class="dropdown-divider"></div>
+
+                      <a href="/JHWelch/encrypted-env-viewer/blob/858fc6fb5d684c940d6b9b001a39a414a6b6c79a/.env.encrypted" class="pl-5 dropdown-item btn-link" rel="nofollow" role="menuitem" data-ga-click="View file, click, location:files_changed_dropdown">
+                        View file
+                      </a>
+
+
+                      <button type="button" disabled="" role="menuitem" class="pl-5 dropdown-item btn-link" aria-label="You must be signed in and have push access to make changes.">
+                        Edit file
+                      </button>
+
+
+                      <button type="button" disabled="" role="menuitem" class="pl-5 dropdown-item btn-link" aria-label="You must be signed in and have push access to delete this file.">
+                        Delete file
+                      </button>
+
+
+
+                      <span class="sentinel" tabindex="0" aria-hidden="true"></span>
+                    </details-menu>
+                  </details>
+                </div>
               </div>
             </div>
-          </template>
-          <template class="js-line-alert-template">
-            <span aria-label="This line has hidden Unicode characters" data-view-component="true" class="line-alert tooltipped tooltipped-e">
-              <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-alert">
-                <path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
-              </svg>
-            </span></template>
-
-          <table class=" diff-table js-diff-table tab-size  file-diff-split js-file-diff-split" data-tab-size="8" data-diff-anchor="diff-9cd33b87bdc1dacbf505f23f57f3ad67423796482450e249d75502632f1da093" data-paste-markdown-skip="">
-            <thead hidden="">
-              <tr>
-                <th scope="col">Original file line number</th>
-                <th scope="col">Original file line</th>
-                <th scope="col">Diff line number</th>
-                <th scope="col">Diff line change</th>
-              </tr>
-            </thead>
-            <colgroup>
-              <col width="40">
-              <col>
-              <col width="40">
-              <col>
-            </colgroup>
-            <tbody>
-
-              <tr data-position="0">
-                <td id="diff-9cd33b87bdc1dacbf505f23f57f3ad67423796482450e249d75502632f1da093HL1" class="blob-num blob-num-hunk" data-line-number="..."></td>
-                <td class="blob-code blob-code-inner blob-code-hunk" colspan="3">@@ -1 +1 @@</td>
-              </tr>
 
 
-              <tr data-hunk="c728f3a1d80a5f979b6fdb3d52bdf3443778cd1dcce7edc45957c60225413db8">
-                <td class="blob-num blob-num-deletion js-linkable-line-number js-code-nav-line-number" id="diff-9cd33b87bdc1dacbf505f23f57f3ad67423796482450e249d75502632f1da093L1" data-line-number="1"></td>
+            <div class="js-file-content Details-content--hidden position-relative" data-hydro-view="{&quot;event_type&quot;:&quot;pull_request.select_diff_range&quot;,&quot;payload&quot;:{&quot;actor_id&quot;:4480375,&quot;pull_request_id&quot;:null,&quot;repository_id&quot;:null,&quot;diff_type&quot;:&quot;SPLIT&quot;,&quot;whitespace_ignored&quot;:false,&quot;originating_url&quot;:&quot;https://github.com/JHWelch/encrypted-env-viewer/compare/file-list?diff=split&amp;range=examples%2Fenv1...examples%2Fenv2&quot;,&quot;user_id&quot;:4480375}}" data-hydro-view-hmac="26acdc637411b52264e545ce7b0158b06e3149a861e186f04a6aea01751bab12">
 
-                <td data-split-side="left" data-lock-side-selection="" class="code-review blob-code blob-code-deletion js-file-line js-skip-tagsearch">
 
-                  <span class="blob-code-inner blob-code-marker js-code-nav-pass js-skip-tagsearch" data-code-marker="-"><span class="x x-first x-last">eyJpdiI6IkhTYTRJdUx0dUQyTnBaRG1sTkMySHc9PSIsInZhbHVlIjoieDJXTmNkVmkyeVg1Qmg5b1VDUGVCdz09IiwibWFjIjoiN2NiNTdkZWY4YjBlZmFmNTdkYjJhZWU5NTQyNjIwNGNiYmZjNGVmZTYxNjA5NDQxNDVlYWFiNzhkYjBkODEzYyIsInRhZyI6IiJ9</span></span>
+              <div class="data highlight js-blob-wrapper" style="">
+                <template class="js-file-alert-template">
+                  <div data-view-component="true" class="flash flash-warn flash-full d-flex flex-items-center">
+                    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-alert">
+                      <path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
+                    </svg>
+                    <span>
+                      This file contains bidirectional Unicode text that may be interpreted or compiled differently than what appears below. To review, open the file in an editor that reveals hidden Unicode characters.
+                      <a class="Link--inTextBlock" href="https://github.co/hiddenchars" target="_blank">Learn more about bidirectional Unicode characters</a>
+                    </span>
 
-                </td>
 
-                <td class="blob-num blob-num-addition js-linkable-line-number js-code-nav-line-number js-blob-rnum" id="diff-9cd33b87bdc1dacbf505f23f57f3ad67423796482450e249d75502632f1da093R1" data-line-number="1"></td>
+                    <div data-view-component="true" class="flash-action"> <a href="{{ revealButtonHref }}" data-view-component="true" class="btn-sm btn"> Show hidden characters
+                      </a>
+                    </div>
+                  </div>
+                </template>
+                <template class="js-line-alert-template">
+                  <span aria-label="This line has hidden Unicode characters" data-view-component="true" class="line-alert tooltipped tooltipped-e">
+                    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-alert">
+                      <path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
+                    </svg>
+                  </span></template>
 
-                <td data-split-side="right" data-lock-side-selection="" class="code-review blob-code blob-code-addition js-file-line">
 
-                  <span class="blob-code-inner blob-code-marker js-code-nav-pass" data-code-marker="+"><span class="x x-first x-last">eyJpdiI6Im9mTWdTOUpyajB3Z1B4SmpXR0cvaHc9PSIsInZhbHVlIjoiRVRrMlVjYmtTU25TOWpOOVNiSkFFejRTMTlrbXJ0emdJelZoSHREMXBKND0iLCJtYWMiOiJkNzJiYzhjMWMzNjc5MDNmYjFmN2M5N2U3NWQyOWVmZjY5YzgwMDA4NmZhOTIyYTAyMWNkYmYyNDQwMTFmNjQ1IiwidGFnIjoiIn0=</span></span>
 
-                </td>
-              </tr>
-            </tbody>
-          </table>
+
+                <table class=" diff-table js-diff-table tab-size  file-diff-split js-file-diff-split" data-tab-size="8" data-diff-anchor="diff-7290b1863cf336ec39d36850cfaac85aed83ccc229a6e0cd42b3f8079a241c8d" data-paste-markdown-skip="">
+                  <thead hidden="">
+                    <tr>
+                      <th scope="col">Original file line number</th>
+                      <th scope="col">Original file line</th>
+                      <th scope="col">Diff line number</th>
+                      <th scope="col">Diff line change</th>
+                    </tr>
+                  </thead>
+                  <colgroup>
+                    <col width="40">
+                    <col>
+                    <col width="40">
+                    <col>
+                  </colgroup>
+                  <tbody>
+
+                    <tr data-position="0">
+                      <td id="diff-7290b1863cf336ec39d36850cfaac85aed83ccc229a6e0cd42b3f8079a241c8dHL1" class="blob-num blob-num-hunk" data-line-number="..."></td>
+                      <td class="blob-code blob-code-inner blob-code-hunk" colspan="3">@@ -1 +1 @@</td>
+                    </tr>
+
+
+                    <tr data-hunk="c728f3a1d80a5f979b6fdb3d52bdf3443778cd1dcce7edc45957c60225413db8">
+                      <td class="blob-num blob-num-deletion js-linkable-line-number js-code-nav-line-number" id="diff-7290b1863cf336ec39d36850cfaac85aed83ccc229a6e0cd42b3f8079a241c8dL1" data-line-number="1"></td>
+
+                      <td data-split-side="left" data-lock-side-selection="" class="code-review blob-code blob-code-deletion js-file-line js-skip-tagsearch">
+
+                        <span class="blob-code-inner blob-code-marker js-code-nav-pass js-skip-tagsearch" data-code-marker="-">eyJpdiI6Ijk2YnpRZEdkUm1LNjBuUy80OTcwSmc9PSIsInZhbHVlIjoiZ0JWVDhpdUV4Qkd4UlZ0bEU1enJFQ1JVMmNocVZSZUJ2dVZJVWlHYTFBeVBSbkgycnMyOEJvbERvcXNieG05UUMrWjVQUUdRdEJGZ3I1Tm9IWTNlRzI5bmQyQlh5T01pY1Z3VDZKV0NwVmJxaGtGYVQyNHZiSE82SmtSS0JHQnlQQkVaS3JFMVJKMmg2WFBQSkZDTHJ6aXBVVVRaWG1OT0ltcGhFL2VQWFFEaXJUbmJsOXBFS2pNbVVKaEhLZzVNdmpjYWFmTGQ4M2FCVFhibTMvMG5JYTcreVpoKzVhODZMK2RSdWFUcWM4cEx3N2RtM1o5cnlNRmwxVkgxcWdWWTQ4ZDJOMDlTWXdQUy9Da0RaUXRycUM0dDdEb1pnL1ZtWjlEdDRSSmg3UmxES0orME5zdGZjNVVqTHlGcVBoNVBJV0pzbHVhNFVvYnpxeEZSSzVCNXk2SlNBZlhjb1BYS25VdVIrQ0thTXU1SXFHTjVDMVp1TzZ1OHp1M3JuaW1KWU1IRG9JcGFSSWFsODlRRStvaHFFZi9Ca09kVUtlblhuWSs4RlI3Unp0WHpHUjNwZ2VuRjFUZFFpODBISFl0dDFrUkwya2lZdzhZZXFNKytnUmhxQTI2R0RjZGZBVnppYkprOWpnSmZBc0t2MW1oMVRBRTJtQVVhYk5HdW1LWHJmQ0gwZXJBQ3JFTDkyWEcxaWpmWUdJOVVaeVZJV3kzZ3lSem43ckNUVFlSSHo5MkljeXlZenJ2VXNDeStYcUsxa1VNQTlUTmhwaHJPVmsxYUJWRTJjcm41MUlZYWpWWEl1NFFiUGFBMWtJanVzMUVjY2hqejZrdVRaMEVXeWdYYUh3MGt1UW0rNWxCbVZBYnpzQWhRN2NjQmxBa2UyUnQ3dmRibHFWUkhXWEl1Slc1SVAyaytHYXE5YlBDZ0FaK0xTUUxhdm5scVlvWGZtVk1URGJQa0RsZi8wWVRvbnF3QmFrK2hCVjA3WVNQb1FwZ3hQTUFkUWU1bWhwbE9hemE2MDFjZXNVVTFJb0s1S2FqWFhyeU10T2xZTVVLRlFBcEN2SVg3Rk5DVGtLcGlxOFRyYkFGM20rNmg4RG9JUklVNGNEM0RpUWNBcFBHT3hLQ0VLRnRzMXQ3aHRBRlF2RW0rdTYwYVorVS9xVG1XMHVYTUthWHhxaW03eW0zWGs4QUgvYW9ZVEdSaEh4azRSWXNIcUhJSS9EakhKSmhNR2xSbzMwaXAzbkVBSEdQaXlQZWFuZjBYUk4rRUZxNzdXMXcyT3lnQWFQTWlPZllXTVFTSWFBVjlxSkl2cGlPTTFzVm41OUNoWmgxNndiMDFuZ3owb1hvZCthRXQ4WUs3Unh3aENRSXRCMTc2YUxuYXVXdnJkL0JmdTN3cmFFWDg0UGN6emRaNlJ5QkNZaHk3Q1JEY3UzQ29rS3pyL3NrWE5GaGNRRlRHaTAvWnhteVM3VHloakMySjdmNi9KUys4VmpIb3hPak0yRDlaWElTS2dURzQ0RHIyUlRNOHM3b21EVlZpQy9yUGVBT25DUXM5ZGljLzF6bDRvYXc2ZnpYdEROVDVlTVc3eDlORjRoTm8zRHFQSjVoSmtDSE5yc2R5UnFsdDVKeGtFK1NrdHlDc0JyM09YTXJzTnVxOWdiWlVlVndsM09hWXJ2bHB6dU5jSjhJc2NkTkJRdUlpZEFXR1dJUEd5VnlBNUlnTzB4NDhQMUM3ZVRITmoxWE04MXVtZ2NkRUVKUlR1RFVpMWVHNFU0RUs3MXY0dUxiMDJFdWw1WXNUL2hxTmdVUzdvNkluMWlrYnpGTFlTTWluZlVDNUlFeE1ZTWdTM1NqSGFHVG1UQUdEa0dPYnFvemJSZk5zV3NHcUcvbmtWZGxGTlZiZm9jYnhvWkFhQ0VGbmQxV2F0QWVCVzZCYnZ6YzBpNE1HM2tiUHRubVF3bjRSMFAvQm1FT0VZUEpSbXJySU1LUm05eXk5RUVCV0dkelllcVRrN0d2QlNoVUNuVkdNWkN5QUxJY05tSzFtaFNiYUwvc3lLVm9nMS9pVmdCZFk3OFdQTG40bXhENmN5dz09IiwibWFjIjoiNmY1YzAxMjM1YzUwYTVlMTlhZTcyMGM5Y2Q3NzkwMmFlMDFiMTc0NDk4N2IzM2RmNmE1MTA3ZWI5M2U4Njg5OSIsInRhZyI6IiJ9</span>
+
+                        <span class="no-nl-marker">
+                          <svg aria-label="No newline at end of file" role="img" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-no-entry">
+                            <path d="M4.25 7.25a.75.75 0 0 0 0 1.5h7.5a.75.75 0 0 0 0-1.5h-7.5Z"></path>
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1.5 0a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0Z"></path>
+                          </svg>
+                        </span>
+                      </td>
+
+                      <td class="blob-num blob-num-addition js-linkable-line-number js-code-nav-line-number js-blob-rnum" id="diff-7290b1863cf336ec39d36850cfaac85aed83ccc229a6e0cd42b3f8079a241c8dR1" data-line-number="1"></td>
+
+                      <td data-split-side="right" data-lock-side-selection="" class="code-review blob-code blob-code-addition js-file-line">
+
+                        <span class="blob-code-inner blob-code-marker js-code-nav-pass" data-code-marker="+">eyJpdiI6ImJMMmxobGRKQ2ZWbzhaVVpjaWxHN2c9PSIsInZhbHVlIjoiQ250S216Wkl4LytMNnZEaG95WThlVlJYREo4Y3BGemdIZGtzblNwSXNIZTNndnVvZ1VKOXJSeWVPWWlRYTlFczZFakVjNDdDb0piZSsyc21BRlBrd21yS3NrNnNjSW4yYkN1T0lQUDUvRlA2N3RROFcvZWMvbFJQZGhSRmdpVjdVazNoZ1BxMi9LT0xZZ0FycFJodm9VUzFXUStDb01jcXlnOUw5bTEwcXZyNHMxYzRhZUZmRVZjVGpVWjNvZGRETEVSMFNXTHdDMDhJa1phZys3ejltcXlSK1ZMRUx3c2p1VGlIb0NmU3g0ZEFHVDZOampKNVRLcEtZSndnVjFLeEd2clQxUDhPcnRIVmszeC9QRjhaeFRWQXU5bXYxU1BUeHYrOXladEEyTUZYT3RKN2xPTlRyaDAxbkcraUFLeHRSdVhzaDdjQUx5U242Zi9seDJyMnp5Sjg4REQxcjc2c1NjdlU5ZzhLbG5wcVVZdzlBTkNwMXVHdTdBeHBYS3N0QzlPamJUdnpOTGhVc1hmYmZnNXN3dU9GRW4vRWQrQVhiQW83ajlJcUFHSGkrd3FBNDU2Q0VvQ0pCQXdtYXdTRWpSZUc2b0NicG1oWGRQY0RKUSs0OFc4UDFTMjQrYTUzdVBpRzE1Qnl4aHhVTGp3R2R5NHQ1NDhGU0szMkxzWXFoNCs2M25QRGcyc1drNzNEWG0zYnRNOHdxUFExeFpodFBKQ292WnlMRlhOUjZ2YXJERURHUGNaTWtmaUtHMEZpYzdpZ2JMenVzdHk5V1VrYi9xOGcwQzlUVVBzdGdTdjQrc0VaWHgxTjdrd3ZuVzRHV2FPclQ3bjJLRHA1WG5IMGQ0bUhmb2FzZXd2TkNndS9WbkJmNW9TRXNTU1JBam8wYnVNVTlpVklYOURzUXJZRkptSzN6b1BtbjFrU1lNeU56dDBPczNoUVdTbVRWdVc4b0xmR0RaQzVTcUxYQzREOEZyVlRMWksyc1QveHBtR3BXT0NweHV4dkd4SzNYV0gxSmtOSGF2Y09nRHhnLzJEQ3FnSW95bGFmTHpHemlodkJVbVcyNzY2MEdoQmZqejJhQ3Bxc1VqQVErZ2J4S2drdUhKOWZ3Wm52NG9ka01iS1FTRmhGK3lkSFFRekpSNVR4cXN2YVRNOFdlM2lnUko1L2dLY2ZJN0VWYzFqbG9pM2dJc1JPWWJjSE9ndVRVZ3JEMnRnQVVqWTNSYURTeTJIeVBJQi9XZGJ5KzRESCtmQ3diZDhxWFNrSjc0eVhqYjM3a3JydUJJVk1FU05qblNEd1g4SFE0Uzdidk5aVG95SjZ4UWFwamhLQXA4VC83MzlUOEJVdS96YXphb0V1ckdMTjBwU2kzZ3dHTFU2cjlBWjZURUtxYVBVTEFGVWRpZ2cweW5qeCtmREI0NDhhbFNtYnZ5UFdZS1V4ZUhXZnp0ZWtXOVFKOGx4SFVKQjJ5ZVdVaHVtSjgydU9MemVjbTRLWWlNNy84bFJSMno4MXhQc3FheUJ3MDBWcFZjNHBvVHhESERjdE0xdC8wQWtjSytxVXQ5MEQ4dWdxRVNjTmt0VXVnY2xubk9XVmt1QUxac0l2NHRJV25iWUlKck90RTNINiIsIm1hYyI6IjdmMGI4MDcwMTI0NGFkZTk3MmNhMmYyYzEzYzBhNzM5ZmY1YjU4MjE5NmU3YmI2ZjVmNzdkZTEyYWFjZjM4ZjYiLCJ0YWciOiIifQ==</span>
+
+                        <span class="no-nl-marker">
+                          <svg aria-label="No newline at end of file" role="img" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-no-entry">
+                            <path d="M4.25 7.25a.75.75 0 0 0 0 1.5h7.5a.75.75 0 0 0 0-1.5h-7.5Z"></path>
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1.5 0a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0Z"></path>
+                          </svg>
+                        </span>
+                      </td>
+                    </tr>
+
+
+
+
+
+                  </tbody>
+                </table>
+
+              </div>
+
+            </div>
+          </div>
+
         </div>
+
+
       </div>
+
+      <button type="button" class="js-toggle-all-file-notes" data-hotkey="i" style="display:none">Toggle all file notes</button>
+
+      <button type="button" class="js-toggle-all-file-annotations" data-hotkey="a" style="display:none">Toggle all file annotations</button>
+
+      <svg aria-hidden="true" width="100px" height="84px" viewBox="0 0 340 84" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="diff-placeholder-svg position-absolute bottom-0">
+        <defs>
+          <clipPath id="diff-placeholder">
+            <rect x="0" y="0" width="67.0175439" height="11.9298746" rx="2"></rect>
+            <rect x="18.9473684" y="47.7194983" width="100.701754" height="11.9298746" rx="2"></rect>
+            <rect x="0" y="71.930126" width="37.8947368" height="11.9298746" rx="2"></rect>
+            <rect x="127.017544" y="48.0703769" width="53.3333333" height="11.9298746" rx="2"></rect>
+            <rect x="187.719298" y="48.0703769" width="72.9824561" height="11.9298746" rx="2"></rect>
+            <rect x="76.8421053" y="0" width="140.350877" height="11.9298746" rx="2"></rect>
+            <rect x="17.8947368" y="23.8597491" width="140.350877" height="11.9298746" rx="2"></rect>
+            <rect x="166.315789" y="23.8597491" width="173.684211" height="11.9298746" rx="2"></rect>
+          </clipPath>
+
+          <linearGradient id="animated-diff-gradient" x1="0" x2="0" y1="0" y2="1" spreadMethod="reflect">
+            <stop offset="0" stop-color="#eee"></stop>
+            <stop offset="0.2" stop-color="#eee"></stop>
+            <stop offset="0.5" stop-color="#ddd"></stop>
+            <stop offset="0.8" stop-color="#eee"></stop>
+            <stop offset="1" stop-color="#eee"></stop>
+            <animateTransform attributeName="y1" values="0%; 100%; 0" dur="1s" repeatCount="3"></animateTransform>
+            <animateTransform attributeName="y2" values="100%; 200%; 0" dur="1s" repeatCount="3"></animateTransform>
+          </linearGradient>
+        </defs>
+      </svg>
+
+
     </div>
   </div>
+
 </div>

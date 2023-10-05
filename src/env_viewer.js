@@ -28,6 +28,7 @@ export const decryptButtonCallback = async (event, fileId) => {
     leftDecrypted,
     rightDecrypted,
     dom.colorMode(),
+    dom.diffMode(),
   ));
   event.target.remove();
 };
