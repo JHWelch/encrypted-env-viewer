@@ -7,12 +7,12 @@ beforeEach(() => {
   global.document = new window.DOMParser().parseFromString(html, 'text/html');
 });
 
-describe('PR page', () => {
-  before(() => {
-    html = loadFixture('github_pr.html');
-  });
+describe('encryptedFiles', () => {
+  describe('PR page', () => {
+    before(() => {
+      html = loadFixture('github_pr.html');
+    });
 
-  describe('encryptedFiles', () => {
     it('should return all instances of encrypted files', () => {
       const files = dom.encryptedFiles();
 
@@ -22,7 +22,27 @@ describe('PR page', () => {
     });
   });
 
-  describe('fileContents', () => {
+  describe('Comparison page', () => {
+    before(() => {
+      html = loadFixture('github_comparison.html');
+    });
+
+    it('should return all instances of encrypted files', () => {
+      const files = dom.encryptedFiles();
+
+      expect(files).to.exist;
+      expect(files).to.be.an.instanceof(NodeList);
+      expect(files.length).to.equal(1);
+    });
+  });
+});
+
+describe('fileContents', () => {
+  describe('PR page', () => {
+    before(() => {
+      html = loadFixture('github_pr.html');
+    });
+
     describe('side can be found', () => {
       it('should return the file contents', () => {
         const fileDiv = dom.encryptedFiles()[0];
@@ -53,52 +73,11 @@ describe('PR page', () => {
     });
   });
 
-  describe('addDecryptButton', () => {
-    it('should add a button to the file', () => {
-      const fileDiv = dom.encryptedFiles()[0];
-      const button = fileDiv.querySelector('[data-test="decrypt-env"]');
-
-      expect(button).to.not.exist;
-
-      dom.addDecryptButton(fileDiv, () => {});
-
-      expect(fileDiv.querySelector('[data-test="decrypt-env"]')).to.exist;
+  describe('Comparison page', () => {
+    before(() => {
+      html = loadFixture('github_comparison.html');
     });
-  });
 
-  describe('addNewDiff', () => {
-    it('should replace the diff view with the new diff', () => {
-      const fileDiv = dom.encryptedFiles()[0];
-      const diff = document.createElement('div');
-      diff.innerHTML = 'new diff';
-
-      const inside = fileDiv.querySelector('[data-hydro-view]');
-
-      expect(inside.innerHTML).to.not.equal(diff.innerHTML);
-
-      dom.addNewDiff(fileDiv, diff);
-
-      expect(inside.innerHTML).to.equal(diff.outerHTML);
-    });
-  });
-});
-
-describe('Comparison page', () => {
-  before(() => {
-    html = loadFixture('github_comparison.html');
-  });
-
-  describe('encryptedFiles', () => {
-    it('should return all instances of encrypted files', () => {
-      const files = dom.encryptedFiles();
-
-      expect(files).to.exist;
-      expect(files).to.be.an.instanceof(NodeList);
-      expect(files.length).to.equal(1);
-    });
-  });
-
-  describe('fileContents', () => {
     describe('side can be found', () => {
       it('should return the file contents', () => {
         const fileDiv = dom.encryptedFiles()[0];
@@ -128,8 +107,14 @@ describe('Comparison page', () => {
       });
     });
   });
+});
 
-  describe('addDecryptButton', () => {
+describe('addDecryptButton', () => {
+  describe('PR page', () => {
+    before(() => {
+      html = loadFixture('github_pr.html');
+    });
+
     it('should add a button to the file', () => {
       const fileDiv = dom.encryptedFiles()[0];
       const button = fileDiv.querySelector('[data-test="decrypt-env"]');
@@ -141,8 +126,50 @@ describe('Comparison page', () => {
       expect(fileDiv.querySelector('[data-test="decrypt-env"]')).to.exist;
     });
   });
+  describe('Comparison page', () => {
+    before(() => {
+      html = loadFixture('github_comparison.html');
+    });
 
-  describe('addNewDiff', () => {
+    it('should add a button to the file', () => {
+      const fileDiv = dom.encryptedFiles()[0];
+      const button = fileDiv.querySelector('[data-test="decrypt-env"]');
+
+      expect(button).to.not.exist;
+
+      dom.addDecryptButton(fileDiv, () => {});
+
+      expect(fileDiv.querySelector('[data-test="decrypt-env"]')).to.exist;
+    });
+  });
+});
+
+describe('addNewDiff', () => {
+  describe('PR page', () => {
+    before(() => {
+      html = loadFixture('github_pr.html');
+    });
+
+    it('should replace the diff view with the new diff', () => {
+      const fileDiv = dom.encryptedFiles()[0];
+      const diff = document.createElement('div');
+      diff.innerHTML = 'new diff';
+
+      const inside = fileDiv.querySelector('[data-hydro-view]');
+
+      expect(inside.innerHTML).to.not.equal(diff.innerHTML);
+
+      dom.addNewDiff(fileDiv, diff);
+
+      expect(inside.innerHTML).to.equal(diff.outerHTML);
+    });
+  });
+
+  describe('Comparison page', () => {
+    before(() => {
+      html = loadFixture('github_comparison.html');
+    });
+
     it('should replace the diff view with the new diff', () => {
       const fileDiv = dom.encryptedFiles()[0];
       const diff = document.createElement('div');
@@ -158,7 +185,6 @@ describe('Comparison page', () => {
     });
   });
 });
-
 
 describe('colorMode', () => {
   describe('auto color mode', () => {
