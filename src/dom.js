@@ -4,6 +4,35 @@ const encryptedFileSelectors =
 const diffView = (fileDiv) =>
   fileDiv.querySelector('[data-hydro-view]');
 
+const fileContentsPr = (fileDiv, side) => {
+  const prDiv = fileDiv
+    .querySelector(`[data-side="${side}"][data-original-line]`);
+
+  if (prDiv) {
+    return prDiv
+      .getAttribute('data-original-line')
+      ?.substring(1);
+  }
+};
+
+const fileContentsComparison = (fileDiv, side) => {
+  const comparisonDiv = fileDiv
+    .querySelector(`[data-split-side="${side}"] .blob-code-inner`);
+
+  if (comparisonDiv) {
+    return comparisonDiv?.innerHTML;
+  }
+
+  const sides = document.querySelectorAll('[data-hunk]');
+  if (sides.length !== 2) {
+    return undefined;
+  }
+
+  const sideDiv = sides[side === 'left' ? 0 : 1];
+
+  return sideDiv.querySelector('.blob-code-inner').innerHTML;
+};
+
 export default {
   addDecryptButton: (fileDiv, onClick) => {
     let button = document.createElement('button');
@@ -41,30 +70,6 @@ export default {
 
   encryptedFileSelectors,
 
-  fileContents: (fileDiv, side) => {
-    const prDiv = fileDiv
-      .querySelector(`[data-side="${side}"][data-original-line]`);
-
-    if (prDiv) {
-      return prDiv
-        .getAttribute('data-original-line')
-        ?.substring(1);
-    }
-
-    const comparisonDiv = fileDiv
-      .querySelector(`[data-split-side="${side}"] .blob-code-inner`);
-
-    if (comparisonDiv) {
-      return comparisonDiv?.innerHTML;
-    }
-
-    const sides = document.querySelectorAll('[data-hunk]');
-    if (sides.length !== 2) {
-      return undefined;
-    }
-
-    const sideDiv = sides[side === 'left' ? 0 : 1];
-
-    return sideDiv.querySelector('.blob-code-inner').innerHTML;
-  },
+  fileContents: (fileDiv, side) =>
+    fileContentsPr(fileDiv, side) ?? fileContentsComparison(fileDiv, side),
 };
