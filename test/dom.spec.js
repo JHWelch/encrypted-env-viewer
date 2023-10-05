@@ -74,36 +74,52 @@ describe('fileContents', () => {
   });
 
   describe('Comparison page', () => {
-    before(() => {
-      html = loadFixture('github_comparison.html');
+    describe('side-by-side diff', () => {
+      before(() => {
+        html = loadFixture('github_comparison.html');
+      });
+
+      describe('side can be found', () => {
+        it('should return the file contents', () => {
+          const fileDiv = dom.encryptedFiles()[0];
+          const contents = dom.fileContents(fileDiv, 'left');
+
+          expect(contents).to.exist;
+          expect(contents).to.equal('eyJpdiI6Ijk2YnpRZEdkUm1LNjBuUy80OTcwSmc9PSIsInZhbHVlIjoiZ0JWVDhpdUV4Qkd4UlZ0bEU1enJFQ1JVMmNocVZSZUJ2dVZJVWlHYTFBeVBSbkgycnMyOEJvbERvcXNieG05UUMrWjVQUUdRdEJGZ3I1Tm9IWTNlRzI5bmQyQlh5T01pY1Z3VDZKV0NwVmJxaGtGYVQyNHZiSE82SmtSS0JHQnlQQkVaS3JFMVJKMmg2WFBQSkZDTHJ6aXBVVVRaWG1OT0ltcGhFL2VQWFFEaXJUbmJsOXBFS2pNbVVKaEhLZzVNdmpjYWFmTGQ4M2FCVFhibTMvMG5JYTcreVpoKzVhODZMK2RSdWFUcWM4cEx3N2RtM1o5cnlNRmwxVkgxcWdWWTQ4ZDJOMDlTWXdQUy9Da0RaUXRycUM0dDdEb1pnL1ZtWjlEdDRSSmg3UmxES0orME5zdGZjNVVqTHlGcVBoNVBJV0pzbHVhNFVvYnpxeEZSSzVCNXk2SlNBZlhjb1BYS25VdVIrQ0thTXU1SXFHTjVDMVp1TzZ1OHp1M3JuaW1KWU1IRG9JcGFSSWFsODlRRStvaHFFZi9Ca09kVUtlblhuWSs4RlI3Unp0WHpHUjNwZ2VuRjFUZFFpODBISFl0dDFrUkwya2lZdzhZZXFNKytnUmhxQTI2R0RjZGZBVnppYkprOWpnSmZBc0t2MW1oMVRBRTJtQVVhYk5HdW1LWHJmQ0gwZXJBQ3JFTDkyWEcxaWpmWUdJOVVaeVZJV3kzZ3lSem43ckNUVFlSSHo5MkljeXlZenJ2VXNDeStYcUsxa1VNQTlUTmhwaHJPVmsxYUJWRTJjcm41MUlZYWpWWEl1NFFiUGFBMWtJanVzMUVjY2hqejZrdVRaMEVXeWdYYUh3MGt1UW0rNWxCbVZBYnpzQWhRN2NjQmxBa2UyUnQ3dmRibHFWUkhXWEl1Slc1SVAyaytHYXE5YlBDZ0FaK0xTUUxhdm5scVlvWGZtVk1URGJQa0RsZi8wWVRvbnF3QmFrK2hCVjA3WVNQb1FwZ3hQTUFkUWU1bWhwbE9hemE2MDFjZXNVVTFJb0s1S2FqWFhyeU10T2xZTVVLRlFBcEN2SVg3Rk5DVGtLcGlxOFRyYkFGM20rNmg4RG9JUklVNGNEM0RpUWNBcFBHT3hLQ0VLRnRzMXQ3aHRBRlF2RW0rdTYwYVorVS9xVG1XMHVYTUthWHhxaW03eW0zWGs4QUgvYW9ZVEdSaEh4azRSWXNIcUhJSS9EakhKSmhNR2xSbzMwaXAzbkVBSEdQaXlQZWFuZjBYUk4rRUZxNzdXMXcyT3lnQWFQTWlPZllXTVFTSWFBVjlxSkl2cGlPTTFzVm41OUNoWmgxNndiMDFuZ3owb1hvZCthRXQ4WUs3Unh3aENRSXRCMTc2YUxuYXVXdnJkL0JmdTN3cmFFWDg0UGN6emRaNlJ5QkNZaHk3Q1JEY3UzQ29rS3pyL3NrWE5GaGNRRlRHaTAvWnhteVM3VHloakMySjdmNi9KUys4VmpIb3hPak0yRDlaWElTS2dURzQ0RHIyUlRNOHM3b21EVlZpQy9yUGVBT25DUXM5ZGljLzF6bDRvYXc2ZnpYdEROVDVlTVc3eDlORjRoTm8zRHFQSjVoSmtDSE5yc2R5UnFsdDVKeGtFK1NrdHlDc0JyM09YTXJzTnVxOWdiWlVlVndsM09hWXJ2bHB6dU5jSjhJc2NkTkJRdUlpZEFXR1dJUEd5VnlBNUlnTzB4NDhQMUM3ZVRITmoxWE04MXVtZ2NkRUVKUlR1RFVpMWVHNFU0RUs3MXY0dUxiMDJFdWw1WXNUL2hxTmdVUzdvNkluMWlrYnpGTFlTTWluZlVDNUlFeE1ZTWdTM1NqSGFHVG1UQUdEa0dPYnFvemJSZk5zV3NHcUcvbmtWZGxGTlZiZm9jYnhvWkFhQ0VGbmQxV2F0QWVCVzZCYnZ6YzBpNE1HM2tiUHRubVF3bjRSMFAvQm1FT0VZUEpSbXJySU1LUm05eXk5RUVCV0dkelllcVRrN0d2QlNoVUNuVkdNWkN5QUxJY05tSzFtaFNiYUwvc3lLVm9nMS9pVmdCZFk3OFdQTG40bXhENmN5dz09IiwibWFjIjoiNmY1YzAxMjM1YzUwYTVlMTlhZTcyMGM5Y2Q3NzkwMmFlMDFiMTc0NDk4N2IzM2RmNmE1MTA3ZWI5M2U4Njg5OSIsInRhZyI6IiJ9');
+        });
+      });
+
+      describe('side cannot be found', () => {
+        it('should return undefined', () => {
+          const fileDiv = document.createElement('div');
+          const contents = dom.fileContents(fileDiv, 'right');
+
+          expect(contents).to.be.undefined;
+        });
+      });
+
+      describe('file contents cannot be found', () => {
+        it('should return undefined', () => {
+          const fileDiv = document.createElement('div');
+          fileDiv.innerHTML = '<div data-split-side="left"></div>';
+          const contents = dom.fileContents(fileDiv, 'left');
+
+          expect(contents).to.be.undefined;
+        });
+      });
     });
 
-    describe('side can be found', () => {
+    describe('line-by-line diff', () => {
+      before(() => {
+        html = loadFixture('github_diff_mode/comparison_line_by_line.html');
+      });
+
       it('should return the file contents', () => {
         const fileDiv = dom.encryptedFiles()[0];
         const contents = dom.fileContents(fileDiv, 'left');
 
         expect(contents).to.exist;
         expect(contents).to.equal('eyJpdiI6Ijk2YnpRZEdkUm1LNjBuUy80OTcwSmc9PSIsInZhbHVlIjoiZ0JWVDhpdUV4Qkd4UlZ0bEU1enJFQ1JVMmNocVZSZUJ2dVZJVWlHYTFBeVBSbkgycnMyOEJvbERvcXNieG05UUMrWjVQUUdRdEJGZ3I1Tm9IWTNlRzI5bmQyQlh5T01pY1Z3VDZKV0NwVmJxaGtGYVQyNHZiSE82SmtSS0JHQnlQQkVaS3JFMVJKMmg2WFBQSkZDTHJ6aXBVVVRaWG1OT0ltcGhFL2VQWFFEaXJUbmJsOXBFS2pNbVVKaEhLZzVNdmpjYWFmTGQ4M2FCVFhibTMvMG5JYTcreVpoKzVhODZMK2RSdWFUcWM4cEx3N2RtM1o5cnlNRmwxVkgxcWdWWTQ4ZDJOMDlTWXdQUy9Da0RaUXRycUM0dDdEb1pnL1ZtWjlEdDRSSmg3UmxES0orME5zdGZjNVVqTHlGcVBoNVBJV0pzbHVhNFVvYnpxeEZSSzVCNXk2SlNBZlhjb1BYS25VdVIrQ0thTXU1SXFHTjVDMVp1TzZ1OHp1M3JuaW1KWU1IRG9JcGFSSWFsODlRRStvaHFFZi9Ca09kVUtlblhuWSs4RlI3Unp0WHpHUjNwZ2VuRjFUZFFpODBISFl0dDFrUkwya2lZdzhZZXFNKytnUmhxQTI2R0RjZGZBVnppYkprOWpnSmZBc0t2MW1oMVRBRTJtQVVhYk5HdW1LWHJmQ0gwZXJBQ3JFTDkyWEcxaWpmWUdJOVVaeVZJV3kzZ3lSem43ckNUVFlSSHo5MkljeXlZenJ2VXNDeStYcUsxa1VNQTlUTmhwaHJPVmsxYUJWRTJjcm41MUlZYWpWWEl1NFFiUGFBMWtJanVzMUVjY2hqejZrdVRaMEVXeWdYYUh3MGt1UW0rNWxCbVZBYnpzQWhRN2NjQmxBa2UyUnQ3dmRibHFWUkhXWEl1Slc1SVAyaytHYXE5YlBDZ0FaK0xTUUxhdm5scVlvWGZtVk1URGJQa0RsZi8wWVRvbnF3QmFrK2hCVjA3WVNQb1FwZ3hQTUFkUWU1bWhwbE9hemE2MDFjZXNVVTFJb0s1S2FqWFhyeU10T2xZTVVLRlFBcEN2SVg3Rk5DVGtLcGlxOFRyYkFGM20rNmg4RG9JUklVNGNEM0RpUWNBcFBHT3hLQ0VLRnRzMXQ3aHRBRlF2RW0rdTYwYVorVS9xVG1XMHVYTUthWHhxaW03eW0zWGs4QUgvYW9ZVEdSaEh4azRSWXNIcUhJSS9EakhKSmhNR2xSbzMwaXAzbkVBSEdQaXlQZWFuZjBYUk4rRUZxNzdXMXcyT3lnQWFQTWlPZllXTVFTSWFBVjlxSkl2cGlPTTFzVm41OUNoWmgxNndiMDFuZ3owb1hvZCthRXQ4WUs3Unh3aENRSXRCMTc2YUxuYXVXdnJkL0JmdTN3cmFFWDg0UGN6emRaNlJ5QkNZaHk3Q1JEY3UzQ29rS3pyL3NrWE5GaGNRRlRHaTAvWnhteVM3VHloakMySjdmNi9KUys4VmpIb3hPak0yRDlaWElTS2dURzQ0RHIyUlRNOHM3b21EVlZpQy9yUGVBT25DUXM5ZGljLzF6bDRvYXc2ZnpYdEROVDVlTVc3eDlORjRoTm8zRHFQSjVoSmtDSE5yc2R5UnFsdDVKeGtFK1NrdHlDc0JyM09YTXJzTnVxOWdiWlVlVndsM09hWXJ2bHB6dU5jSjhJc2NkTkJRdUlpZEFXR1dJUEd5VnlBNUlnTzB4NDhQMUM3ZVRITmoxWE04MXVtZ2NkRUVKUlR1RFVpMWVHNFU0RUs3MXY0dUxiMDJFdWw1WXNUL2hxTmdVUzdvNkluMWlrYnpGTFlTTWluZlVDNUlFeE1ZTWdTM1NqSGFHVG1UQUdEa0dPYnFvemJSZk5zV3NHcUcvbmtWZGxGTlZiZm9jYnhvWkFhQ0VGbmQxV2F0QWVCVzZCYnZ6YzBpNE1HM2tiUHRubVF3bjRSMFAvQm1FT0VZUEpSbXJySU1LUm05eXk5RUVCV0dkelllcVRrN0d2QlNoVUNuVkdNWkN5QUxJY05tSzFtaFNiYUwvc3lLVm9nMS9pVmdCZFk3OFdQTG40bXhENmN5dz09IiwibWFjIjoiNmY1YzAxMjM1YzUwYTVlMTlhZTcyMGM5Y2Q3NzkwMmFlMDFiMTc0NDk4N2IzM2RmNmE1MTA3ZWI5M2U4Njg5OSIsInRhZyI6IiJ9');
-      });
-    });
-
-    describe('side cannot be found', () => {
-      it('should return undefined', () => {
-        const fileDiv = document.createElement('div');
-        const contents = dom.fileContents(fileDiv, 'right');
-
-        expect(contents).to.be.undefined;
-      });
-    });
-
-    describe('file contents cannot be found', () => {
-      it('should return undefined', () => {
-        const fileDiv = document.createElement('div');
-        fileDiv.innerHTML = '<div data-split-side="left"></div>';
-        const contents = dom.fileContents(fileDiv, 'left');
-
-        expect(contents).to.be.undefined;
       });
     });
   });

@@ -42,17 +42,29 @@ export default {
   encryptedFileSelectors,
 
   fileContents: (fileDiv, side) => {
-    const div = fileDiv
+    const prDiv = fileDiv
       .querySelector(`[data-side="${side}"][data-original-line]`);
 
-    if (div) {
-      return div
+    if (prDiv) {
+      return prDiv
         .getAttribute('data-original-line')
         ?.substring(1);
     }
 
-    return fileDiv
-      .querySelector(`[data-split-side="${side}"] .blob-code-inner`)
-      ?.innerHTML;
+    const comparisonDiv = fileDiv
+      .querySelector(`[data-split-side="${side}"] .blob-code-inner`);
+
+    if (comparisonDiv) {
+      return comparisonDiv?.innerHTML;
+    }
+
+    const sides = document.querySelectorAll('[data-hunk]');
+    if (sides.length !== 2) {
+      return undefined;
+    }
+
+    const sideDiv = sides[side === 'left' ? 0 : 1];
+
+    return sideDiv.querySelector('.blob-code-inner').innerHTML;
   },
 };
