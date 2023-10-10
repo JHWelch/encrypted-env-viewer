@@ -18,6 +18,13 @@
 
 View [Laravel Encrypted .env files](https://blog.laravel.com/laravel-new-environment-encryption-commands) directly in GitHub pull requests.
 
+<picture>
+  <source srcset="./screenshots/dark.png" media="(prefers-color-scheme: dark)">
+  <img src="./screenshots/light.png" alt="Example Screenshot">
+</picture>
+  
+
+
 ## Manually Build for Release
 
 Both build commands will generate production ready code in the `dist` folder 
