@@ -30,6 +30,28 @@ describe('decryptEnv', () => {
       expect(decryptedEnv).to.equal('');
     });
   });
+
+  describe('aes-128-cbc cipher', () => {
+    const key = 'base64:wvHF+ZSNJ/HaOmwnla5aug==';
+    const env = 'eyJpdiI6Ilk4SWZmUUk3VzRhQXBZZC9hWitTNHc9PSIsInZhbHVlIjoiempoS2kzd0NpbDAvQzNnbk5OVUpUQT09IiwibWFjIjoiYmM1OTc3ZmQ3Y2JiYTIwMjc4NmQ2MTAzZTI1YmViMDkxMWMzODc3NmY2YmNkZGFkMjY3ZjQ1NmUxNWRiYmIyMCIsInRhZyI6IiJ9';
+
+    it('decrypts encrypted .env', async () => {
+      const decryptedEnv = await decryptEnv(env, key);
+
+      expect(decryptedEnv).to.equal('FOO=bar\n');
+    });
+  });
+
+  describe('aes-256-cbc cipher', () => {
+    const key = 'base64:shdwLBVTvagCLqVXjo4EKS1aerccrKz3LTZT8/2wBVw=';
+    const env = 'eyJpdiI6ImEwclNyQ3E3a3p2RytKWVIrQjRPeVE9PSIsInZhbHVlIjoiQWVWb3pCVUoxSWdPRm5RMVg5aDEyUT09IiwibWFjIjoiMTdmNDRmYTU5ZGI3OTJlYzllY2U4NDZmMGQ0NTNjYzRiMmY4ZDAxOTE4ZmRlZGNkMWJhNzgyODA3MGEyMTg2ZCIsInRhZyI6IiJ9';
+
+    it('decrypts encrypted .env', async () => {
+      const decryptedEnv = await decryptEnv(env, key);
+
+      expect(decryptedEnv).to.equal('FOO=bar\n');
+    });
+  });
 });
 
 describe('trimEnv', () => {
