@@ -156,13 +156,16 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: chrome-release
-          path: chrome-release.zip
+          path: chrome
 
       - name: Download Firefox Release
         uses: actions/download-artifact@v3
         with:
           name: firefox-release
-          path: firefox-release.xpi
+          path: firefox
 
       - name: Create GitHub release
-        run: gh release create v$VERSION --title "Store Release v$VERSION" --generate-notes chrome-release.zip firefox-release.xpi
+        run: |
+          mv chrome/release.zip chrome-release.zip
+          mv firefox/release.zip firefox-release.xpi
+          gh release create v$VERSION --title "Store Release v$VERSION" --generate-notes chrome-release.zip firefox-release.xpi
