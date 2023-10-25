@@ -69,7 +69,7 @@
         ]
     },
     "dependencies": {
-        "crypto-js": "^4.1.1",
+        "crypto-js": "^4.2.0",
         "diff": "^5.1.0",
         "diff2html": "^3.4.42"
     }
